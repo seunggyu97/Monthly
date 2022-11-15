@@ -7,4 +7,29 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- 앱 브랜드 컬러 -->
+    <color name="main">#B4EB46</color>
+
+    <!-- 폰트 컬러 (블랙) -->
+    <color name="font_black">#191919</color>
+    <!-- 폰트 컬러 (그레이) -->
+    <color name="font_gray">#767676</color>
+    <!-- 폰트 컬러 (밝은 그레이) -->
+    <color name="font_gray_light">#999999</color>
+
+    <!-- 오류 및 알림 컬러 -->
+    <color name="error">#FF3120</color>
+
+    <!-- 백그라운드 컬러(강) -->
+    <color name="bg_dark">#F1F1F5</color>
+    <!-- 백그라운드 컬러(약) -->
+    <color name="bg_light">#F8F8FA</color>
+
+    <!-- 라인 컬러(강) -->
+    <color name="line_dark">#191919</color>
+    <!-- 라인 컬러(중) -->
+    <color name="line_mid">#DBDBDB</color>
+    <!-- 라인 컬러(약) -->
+    <color name="line_light">#EDEDED</color>
 </resources>
