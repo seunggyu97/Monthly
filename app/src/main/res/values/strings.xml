@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Monthly</string>
+    <string name="activity_init_top">처음이신가요?</string>
 </resources>
