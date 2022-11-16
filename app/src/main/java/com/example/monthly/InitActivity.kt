@@ -3,8 +3,9 @@ package com.example.monthly
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.R
+//import androidx.compose.foundation.layout.R
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -19,11 +20,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.databinding.DataBindingUtil
+import com.example.monthly.databinding.ActivityInitBinding
 import com.example.monthly.ui.theme.MonthlyTheme
+import com.example.monthly.viewModel.InitViewModel
 
-class InitActivity : ComponentActivity() {
+class InitActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityInitBinding
+    private lateinit var viewModel: InitViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_init)
     }
 }
 
