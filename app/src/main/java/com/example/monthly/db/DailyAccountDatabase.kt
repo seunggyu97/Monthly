@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.monthly.dao.DailyAccountDAO
-import com.example.monthly.dao.StampDAO
-import com.example.monthly.dao.UserDAO
-import com.example.monthly.dataclass.User
+import com.example.monthly.dataclass.DailyAccount
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [DailyAccount::class], version = 1)
+@TypeConverters( Converters::class)
 abstract class DailyAccountDatabase : RoomDatabase() {
 
     abstract val dailyAccountDAO : DailyAccountDAO

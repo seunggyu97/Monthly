@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Monthly</string>
-    <string name="activity_init_top">처음이신가요?</string>
+
+    <!-- InitActivity -->
+    <string name="init_top">처음이신가요?</string>
+    <string name="init_guide">간단한 정보를 입력해주세요.</string>
+    <string name="init_name">이름</string>
+    <string name="init_limitValue">월 사용한도금액</string>
+    <string name="init_referenceDate">기준일</string>
+    <string name="init_referenceDate_month">매월</string>
+    <string name="confirm">확인</string>
 </resources>

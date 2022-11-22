@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.monthly.dao.StampDAO
-import com.example.monthly.dao.UserDAO
-import com.example.monthly.dataclass.User
+import com.example.monthly.dataclass.Stamp
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [Stamp::class], version = 1)
+@TypeConverters( Converters::class)
 abstract class StampDatabase : RoomDatabase() {
 
     abstract val stampDAO : StampDAO
