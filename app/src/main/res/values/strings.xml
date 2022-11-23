@@ -9,4 +9,12 @@
     <string name="init_referenceDate">기준일</string>
     <string name="init_referenceDate_month">매월</string>
     <string name="confirm">확인</string>
+    <string name="dialog_initCheck_title">입력하신 정보가 맞나요?</string>
+    <string name="string_colon">:</string>
+    <string name="string_day">일</string>
+    <string name="string_won">원</string>
+    <string name="string_requestSign">입력하신 내용이 맞다면 아래에 서명을 해주세요.</string>
+    <string name="string_resign"><u>다시서명</u></string>
+    <string name="string_close">닫기</string>
+    <string name="string_inputComplete">입력 완료</string>
 </resources>

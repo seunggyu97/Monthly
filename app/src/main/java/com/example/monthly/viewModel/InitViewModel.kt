@@ -17,8 +17,15 @@ class InitViewModel() : ViewModel() {
 //        total.value = startingTotal
 //    }
 
-//    fun setTotal(){
-//        val intInput: Int = inputText.value!!.toInt()
-//        total.value =(total.value)?.plus(intInput)
-//    }
+    fun dismiss(){
+        // Todo : Dialog 닫기 로직 추가할 것
+    }
+
+    fun inputComplete(){
+        // Todo : 입력완료 onClick 추가할 것
+    }
+
+    fun resign(){
+        // Todo : 다시서명 기능 구현할 것
+    }
 }
