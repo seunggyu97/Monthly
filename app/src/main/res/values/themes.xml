@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Monthly" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Monthly" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/main</item>
+        <!-- Secondary brand color. -->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/background</item>
+        <!-- Background color. -->
+        <item name="background">@color/bg_light</item>
+        <item name="android:windowBackground">@color/bg_light</item>
+        <!-- Customize your theme here. -->
+        <item name="colorControlHighlight">@color/submain</item>
+    </style>
+
+    <!-- Splash Theme -->
+    <style name="Theme.Splash" parent="Theme.AppCompat.NoActionBar">
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/background</item>
+        <!-- Background color. -->
+        <item name="background">@color/main</item>
+        <item name="android:windowBackground">@color/main</item>
+    </style>
 
     <!-- Font Style -->
     <style name="Text.Bold_32_Blue" parent="android:TextAppearance">
@@ -160,6 +183,20 @@
         <item name="android:fontFamily">@font/notosans_kr_medium</item>
     </style>
 
+    <style name="Text.Regular_14_Black" parent="android:TextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/font_black</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Text.Regular_14_grey" parent="android:TextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/font_grey</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="Text.Regular_13_Black" parent="android:TextAppearance">
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/font_black</item>
@@ -243,24 +280,24 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-<!--    &lt;!&ndash; TextInputLayout &ndash;&gt;-->
-<!--    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+    <!--    &lt;!&ndash; TextInputLayout &ndash;&gt;-->
+    <!--    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
 
-<!--        &lt;!&ndash;FilledBox일 경우 밑줄 색상, OutlinedBox일 경우 테두리 색상&ndash;&gt;-->
-<!--        <item name="boxStrokeColor">@color/main</item>-->
-<!--        &lt;!&ndash;Counter&ndash;&gt;-->
-<!--        <item name="counterTextAppearance">@style/Text.Medium_20_Black</item>-->
-<!--        &lt;!&ndash;EditText에 있을때의 Hint&ndash;&gt;-->
-<!--        <item name="android:textColorHint">@color/font_grey</item>-->
-<!--        &lt;!&ndash;상단에 있을때의 Hint&ndash;&gt;-->
-<!--        <item name="hintTextColor">@color/font_grey</item>-->
-<!--        <item name="hintTextAppearance">@style/Text.Regular_12_grey</item>-->
-<!--        &lt;!&ndash;Helper&ndash;&gt;-->
-<!--        <item name="helperTextTextAppearance">@style/Text.Regular_12_grey</item>-->
-<!--        &lt;!&ndash;Error&ndash;&gt;-->
-<!--        <item name="errorEnabled">true</item>-->
-<!--        <item name="colorError">@color/error</item>-->
-<!--        <item name="errorIconDrawable">@android:color/transparent</item>-->
-<!--        <item name="errorTextAppearance">@style/Text.Regular_12_error</item>-->
-<!--    </style>-->
+    <!--        &lt;!&ndash;FilledBox일 경우 밑줄 색상, OutlinedBox일 경우 테두리 색상&ndash;&gt;-->
+    <!--        <item name="boxStrokeColor">@color/main</item>-->
+    <!--        &lt;!&ndash;Counter&ndash;&gt;-->
+    <!--        <item name="counterTextAppearance">@style/Text.Medium_20_Black</item>-->
+    <!--        &lt;!&ndash;EditText에 있을때의 Hint&ndash;&gt;-->
+    <!--        <item name="android:textColorHint">@color/font_grey</item>-->
+    <!--        &lt;!&ndash;상단에 있을때의 Hint&ndash;&gt;-->
+    <!--        <item name="hintTextColor">@color/font_grey</item>-->
+    <!--        <item name="hintTextAppearance">@style/Text.Regular_12_grey</item>-->
+    <!--        &lt;!&ndash;Helper&ndash;&gt;-->
+    <!--        <item name="helperTextTextAppearance">@style/Text.Regular_12_grey</item>-->
+    <!--        &lt;!&ndash;Error&ndash;&gt;-->
+    <!--        <item name="errorEnabled">true</item>-->
+    <!--        <item name="colorError">@color/error</item>-->
+    <!--        <item name="errorIconDrawable">@android:color/transparent</item>-->
+    <!--        <item name="errorTextAppearance">@style/Text.Regular_12_error</item>-->
+    <!--    </style>-->
 </resources>

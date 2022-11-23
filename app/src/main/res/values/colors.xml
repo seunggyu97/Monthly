@@ -10,6 +10,8 @@
 
     <!-- 앱 브랜드 컬러 -->
     <color name="main">#B4EB46</color>
+    <color name="submain">#DBF8A1</color>
+    <color name="deepmain">#8DB838</color>
 
     <!-- 폰트 컬러 (블랙) -->
     <color name="font_black">#191919</color>

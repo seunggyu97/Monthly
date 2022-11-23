@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
         <variable
             name="viewModel"
             type="com.example.monthly.viewModel.InitViewModel" />
@@ -13,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_light">
+        android:background="@drawable/view_round_white_6">
 
         <TextView
             android:id="@+id/tv_title"
