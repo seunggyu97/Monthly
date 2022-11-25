@@ -65,14 +65,12 @@
                         android:id="@+id/et_limitValue"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edittext_selector"
-                        android:backgroundTint="@color/bg_dark"
                         android:inputType="number"
                         android:paddingHorizontal="20sp"
-                        android:textAlignment="textEnd"
-                        android:textCursorDrawable="@drawable/edittext_cursor"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textAppearance="@style/Text.Bold_20_Black"
+                        android:background="@drawable/edittext_selector"
+                        android:textAlignment="textStart"
+                        android:textCursorDrawable="@drawable/edittext_cursor"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -84,7 +82,6 @@
                         android:id="@+id/tv_value_to_korean"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="(오십만천원)"
                         android:textAppearance="@style/Text.Medium_20_Black" />
                 </LinearLayout>
             </LinearLayout>
@@ -118,6 +115,7 @@
                         android:textAppearance="@style/Text.Medium_20_Black" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_referenceDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
@@ -194,7 +192,7 @@
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_board"
+            android:background="@drawable/ripple_board_main"
             android:text="@string/confirm"
             android:textAppearance="@style/Text.Medium_16_White"
             android:visibility="gone"

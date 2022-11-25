@@ -13,6 +13,8 @@
         <item name="android:windowBackground">@color/bg_light</item>
         <!-- Customize your theme here. -->
         <item name="colorControlHighlight">@color/submain</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
+
     </style>
 
     <!-- Splash Theme -->
@@ -24,6 +26,25 @@
         <!-- Background color. -->
         <item name="background">@color/main</item>
         <item name="android:windowBackground">@color/main</item>
+    </style>
+
+    <!-- Bottom sheet dialog Style -->
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomRoundedBackgroundBottomSheet</item>
+        <item name="behavior_draggable">false</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+    <style name="CustomRoundedBackgroundBottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/custom_bottom_sheet</item>
+    </style>
+
+    <!-- NumberPicker Style -->
+    <style name="AppTheme.NumberPicker" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textAppearance">@style/Text.Regular_14_Black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:colorControlNormal">@color/lavender_blue</item>
     </style>
 
     <!-- Font Style -->
@@ -58,6 +79,13 @@
     <style name="Text.Bold_20_Blue" parent="android:TextAppearance">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/royal_blue</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Bold_20_Error" parent="android:TextAppearance">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/error</item>
         <item name="android:fontFamily">@font/app_font</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -102,7 +130,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text.Bold_16_Red" parent="android:TextAppearance">
+    <style name="Text.Bold_16_Error" parent="android:TextAppearance">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/error</item>
         <item name="android:fontFamily">@font/app_font</item>
@@ -130,6 +158,13 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="Text.Regular_16_grey" parent="android:TextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/font_grey</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="Text.Regular_16_white" parent="android:TextAppearance">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
@@ -146,6 +181,24 @@
     <style name="Text.Medium_16_Black" parent="android:TextAppearance">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/font_black</item>
+        <item name="android:fontFamily">@font/notosans_kr_medium</item>
+    </style>
+
+    <style name="Text.Medium_16_Blue" parent="android:TextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/royal_blue</item>
+        <item name="android:fontFamily">@font/notosans_kr_medium</item>
+    </style>
+
+    <style name="Text.Medium_16_Grey" parent="android:TextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/font_grey</item>
+        <item name="android:fontFamily">@font/notosans_kr_medium</item>
+    </style>
+
+    <style name="Text.Medium_16_Error" parent="android:TextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/error</item>
         <item name="android:fontFamily">@font/notosans_kr_medium</item>
     </style>
 

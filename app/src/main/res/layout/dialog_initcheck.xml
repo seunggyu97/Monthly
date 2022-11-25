@@ -197,20 +197,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ll_signLayout">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/bg_light"
+                android:background="@drawable/ripple_board_white"
                 android:onClick="@{() -> viewModel.dismiss()}"
                 android:text="@string/string_close"
+                android:textAlignment="center"
                 android:textAppearance="@style/Text.Bold_14_Error" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/bg_light"
+                android:background="@drawable/ripple_board_white"
+                android:textAlignment="center"
                 android:onClick="@{() -> viewModel.inputComplete()}"
                 android:text="@string/string_inputComplete"
                 android:textAppearance="@style/Text.Bold_14_Blue" />

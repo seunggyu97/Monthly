@@ -1,17 +1,6 @@
 package com.example.monthly.ui
 
-//import androidx.compose.foundation.layout.Column
-//import androidx.compose.foundation.layout.R
-//import androidx.compose.foundation.layout.fillMaxSize
-//import androidx.compose.foundation.layout.padding
-//import androidx.compose.foundation.rememberScrollState
-//import androidx.compose.foundation.verticalScroll
-//import androidx.compose.material.icons.Icons
-//import androidx.compose.material.icons.filled.AccountCircle
-//import androidx.compose.material3.MaterialTheme
-//import androidx.compose.material3.Scaffold
-//import androidx.compose.material3.Surface
-//import com.example.monthly.ui.theme.MonthlyTheme
+import BottomSheetDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -41,19 +30,29 @@ class InitActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(InitViewModel::class.java)
 
         // viewModel의 inputName 값에 변동이 생길때마다 실행
-        viewModel.inputName.observe(this, Observer {
+        viewModel.inputName.observe(this){
             if (it.isNotEmpty()) binding.btnConfirm.visibility = View.VISIBLE
             else binding.btnConfirm.visibility = View.GONE
-        })
+        }
+
+        // viewModel의 inputName 값에 변동이 생길때마다 실행
+        viewModel.inputDay.observe(this){
+//            binding.tvReferenceDate.text = viewModel.getReferenceDate().toString()
+            Log.e("MyTag", "Observed!!!!!!!!!!")
+        }
 
         binding.tvReferenceDate.text = viewModel.getReferenceDate().toString()
 
         binding.apply {
+
+            // 확인 버튼
             btnConfirm.setOnClickListener {
                 if (etName.isFocused) {
                     // 이름에 포커스 되어있는 상태라면 기준일 레이아웃을 보이게 한다.
                     binding.llReferenceDate.visibility = View.VISIBLE
                     binding.tvGuide.text = getString(R.string.init_guide2)
+                    binding.tvTop.text = getString(R.string.init_top2)
+                    showBottomSheet()
                     Log.e("MyTag", "이름 포커스")
                 }
                 // 기준일 입력칸에 포커스 되어있는 상태라면 한도금액 레이아웃을 보이게 한 후 한도 입력칸에 포커스 이동
@@ -74,9 +73,18 @@ class InitActivity : AppCompatActivity() {
                     }
                 }
             }
+
+            // 기준일 선택 버튼
+            clReferenceDate.setOnClickListener{
+                showBottomSheet()
+            }
         }
     }
 
+    fun showBottomSheet(){
+        val bottomSheet = BottomSheetDialog()
+        bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+    }
     fun addTextChangedListener() {
         // 이름 입력칸의 내용이 바뀔 때 마다 viewModel에 저장
         binding.etName.addTextChangedListener(object : TextWatcher {
