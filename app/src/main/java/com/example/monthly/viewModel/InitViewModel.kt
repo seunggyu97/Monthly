@@ -1,5 +1,6 @@
 package com.example.monthly.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,6 +29,7 @@ class InitViewModel() : ViewModel() {
 
     fun setDay(day: String){
         _inputDay.value = day
+        Log.e("MyTag","setDay실행")
     }
 
     fun setLimitValue(limit: String){

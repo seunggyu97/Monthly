@@ -13,9 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.R
 import com.example.monthly.databinding.ActivityInitBinding
+import com.example.monthly.ui.dialogs.UpdateReferenceDateInterface
 import com.example.monthly.viewModel.InitViewModel
 
-class InitActivity : AppCompatActivity() {
+class InitActivity : AppCompatActivity(), UpdateReferenceDateInterface {
     private lateinit var binding: ActivityInitBinding
     private lateinit var viewModel: InitViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,13 +32,14 @@ class InitActivity : AppCompatActivity() {
 
         // viewModel의 inputName 값에 변동이 생길때마다 실행
         viewModel.inputName.observe(this){
+            Log.e("MyTag","inputNameObserved")
             if (it.isNotEmpty()) binding.btnConfirm.visibility = View.VISIBLE
             else binding.btnConfirm.visibility = View.GONE
         }
 
-        // viewModel의 inputName 값에 변동이 생길때마다 실행
+        // viewModel의 inputDay 값에 변동이 생길때마다 실행
         viewModel.inputDay.observe(this){
-//            binding.tvReferenceDate.text = viewModel.getReferenceDate().toString()
+            binding.tvReferenceDate.text = it.toString()
             Log.e("MyTag", "Observed!!!!!!!!!!")
         }
 
@@ -82,7 +84,7 @@ class InitActivity : AppCompatActivity() {
     }
 
     fun showBottomSheet(){
-        val bottomSheet = BottomSheetDialog()
+        val bottomSheet = BottomSheetDialog(this)
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
     }
     fun addTextChangedListener() {
@@ -134,6 +136,14 @@ class InitActivity : AppCompatActivity() {
                 viewModel.setLimitValue(binding.etLimitValue.text.toString())
             }
         })
+    }
+
+    override fun onCompleteButtonClicked(content: String) {
+        binding.apply {
+//            tvReferenceDate.text = content
+        }
+        viewModel.setDay(content)
+
     }
 }
 
