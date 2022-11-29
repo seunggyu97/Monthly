@@ -1,19 +1,16 @@
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.databinding.DialogBottomsheetBinding
-import com.example.monthly.ui.dialogs.UpdateReferenceDateInterface
+import com.example.monthly.ui.dialogs.InitDialogInterface
 import com.example.monthly.viewModel.InitViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetDialog(updateReferenceDateInterface: UpdateReferenceDateInterface) : BottomSheetDialogFragment() {
+class BottomSheetDialog(initDialogInterface: InitDialogInterface) : BottomSheetDialogFragment() {
     private lateinit var binding: DialogBottomsheetBinding
     // 액티비티에서 인터페이스를 받아오기
-    private var updateReferenceDateInterface: UpdateReferenceDateInterface = updateReferenceDateInterface
+    private var initDialogInterface: InitDialogInterface = initDialogInterface
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -32,7 +29,7 @@ class BottomSheetDialog(updateReferenceDateInterface: UpdateReferenceDateInterfa
             }
             tvComplete.setOnClickListener {
                 val referenceDateValue = npReferenceDay.value.toString()
-                updateReferenceDateInterface.onCompleteButtonClicked(referenceDateValue)
+                initDialogInterface.onCompleteButtonClicked(referenceDateValue)
                 dismiss()
             }
 

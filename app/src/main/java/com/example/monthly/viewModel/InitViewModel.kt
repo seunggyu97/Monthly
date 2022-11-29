@@ -1,22 +1,24 @@
 package com.example.monthly.viewModel
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.monthly.enumClass.FocusedEditTextType
 
-class InitViewModel() : ViewModel() {
+class InitViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _inputName = MutableLiveData<String>()
     private val _inputDay = MutableLiveData<String>()
-    private val _inputLimitValue = MutableLiveData<Int>()
+    private val _inputLimitValue = MutableLiveData<String>()
 
     val inputName : LiveData<String>
         get() = _inputName
     val inputDay : LiveData<String>
         get() = _inputDay
-    val inputLimitValue : LiveData<Int>
+    val inputLimitValue : LiveData<String>
         get() = _inputLimitValue
 
     init{
@@ -29,15 +31,15 @@ class InitViewModel() : ViewModel() {
 
     fun setDay(day: String){
         _inputDay.value = day
-        Log.e("MyTag","setDay실행")
     }
 
     fun setLimitValue(limit: String){
-        _inputLimitValue.value = limit.toInt()
+        _inputLimitValue.value = limit
     }
 
-    fun getLimitValue(): Int? = _inputLimitValue.value
+    fun getLimitValue(): String? = _inputLimitValue.value
     fun getReferenceDate(): String? = _inputDay.value
+    fun getName(): String? = _inputName.value
 
     fun dismiss(){
         // Todo : Dialog 닫기 로직 추가할 것

@@ -50,11 +50,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_guide">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/init_limitValue"
-                    android:textAppearance="@style/Text.Regular_12_grey" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/init_limitValue"
+                        android:textAppearance="@style/Text.Regular_12_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  "
+                        android:textAppearance="@style/Text.Regular_12_grey" />
+
+                    <TextView
+                        android:id="@+id/tv_limitValue_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/init_limitValue_error"
+                        android:textAppearance="@style/Text.Regular_12_error"
+                        android:visibility="gone" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -65,17 +86,24 @@
                         android:id="@+id/et_limitValue"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:paddingHorizontal="20sp"
-                        android:textAppearance="@style/Text.Bold_20_Black"
                         android:background="@drawable/edittext_selector"
-                        android:textAlignment="textStart"
-                        android:textCursorDrawable="@drawable/edittext_cursor"/>
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:paddingHorizontal="20sp"
+                        android:textAlignment="textEnd"
+                        android:textAppearance="@style/Text.Bold_20_Black"
+                        android:textCursorDrawable="@drawable/edittext_cursor" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/string_won"
+                        android:textAppearance="@style/Text.Medium_20_Black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="   "
                         android:textAppearance="@style/Text.Medium_20_Black" />
 
                     <TextView
@@ -96,11 +124,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_limitValue">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/init_referenceDate"
-                    android:textAppearance="@style/Text.Regular_12_grey" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/init_referenceDate"
+                        android:textAppearance="@style/Text.Regular_12_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  "
+                        android:textAppearance="@style/Text.Regular_12_grey" />
+
+                    <TextView
+                        android:id="@+id/tv_referenceDate_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/init_referenceDate_error"
+                        android:textAppearance="@style/Text.Regular_12_error"
+                        android:visibility="gone" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -158,11 +207,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_referenceDate">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/init_name"
-                    android:textAppearance="@style/Text.Regular_12_grey" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/init_name"
+                        android:textAppearance="@style/Text.Regular_12_grey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  "
+                        android:textAppearance="@style/Text.Regular_12_grey" />
+
+                    <TextView
+                        android:id="@+id/tv_name_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/init_name_error"
+                        android:textAppearance="@style/Text.Regular_12_error"
+                        android:visibility="gone" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -174,6 +244,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_selector"
+                        android:maxLength="10"
                         android:textAlignment="textStart"
                         android:textAppearance="@style/Text.Medium_20_Black"
                         android:textCursorDrawable="@drawable/edittext_cursor" />

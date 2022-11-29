@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="@{String.valueOf(viewModel.inputDay)}"
+                    android:text="@{String.valueOf(viewModel.getName())}"
                     android:textAppearance="@style/Text.Medium_16_Black" />
 
                 <TextView
@@ -198,22 +198,22 @@
             app:layout_constraintTop_toBottomOf="@id/ll_signLayout">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_close"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_board_white"
-                android:onClick="@{() -> viewModel.dismiss()}"
                 android:text="@string/string_close"
                 android:textAlignment="center"
                 android:textAppearance="@style/Text.Bold_14_Error" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_finish"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_board_white"
                 android:textAlignment="center"
-                android:onClick="@{() -> viewModel.inputComplete()}"
                 android:text="@string/string_inputComplete"
                 android:textAppearance="@style/Text.Bold_14_Blue" />
         </LinearLayout>

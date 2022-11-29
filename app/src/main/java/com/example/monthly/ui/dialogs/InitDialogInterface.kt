@@ -1,5 +1,8 @@
 package com.example.monthly.ui.dialogs
 
-interface UpdateReferenceDateInterface {
+interface InitDialogInterface {
     fun onCompleteButtonClicked(content : String)
+
+    fun onFinishButtonClicked()
+
 }
