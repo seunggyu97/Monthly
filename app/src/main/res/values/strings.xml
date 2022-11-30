@@ -30,6 +30,11 @@
 
     <!-- InitFinalActivity -->
     <string name="initfinal_top">응원해요!</string>
+    <string name="initfinal_guide">님의 소비를 절약할 수 있도록\n먼쓸리가 옆에서 도와드릴게요.</string>
     <string name="initfinal_youcanmodifyinsettings">방금 전 입력했던 내용은 설정에서 수정이 가능해요.</string>
+    <string name="initfinal_inner_title">의 다짐</string>
+    <string name="initfinal_inner_main">은(는) 매월</string>
+    <string name="initfinal_inner_main2">일을 기준으로 월</string>
+    <string name="initfinal_inner_main3">원 한도로 소비하도록 노력하겠습니다.</string>
     <string name="initfinal_sign">(서명)</string>
 </resources>

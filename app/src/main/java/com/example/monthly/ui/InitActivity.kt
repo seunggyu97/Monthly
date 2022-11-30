@@ -1,6 +1,10 @@
 package com.example.monthly.ui
 
 import BottomSheetDialog
+import android.R.attr
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Bitmap.CompressFormat
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +18,8 @@ import com.example.monthly.databinding.ActivityInitBinding
 import com.example.monthly.ui.dialogs.InitCheckCustomDialog
 import com.example.monthly.ui.dialogs.InitDialogInterface
 import com.example.monthly.viewModel.InitViewModel
+import java.io.ByteArrayOutputStream
+
 
 class InitActivity : AppCompatActivity(), InitDialogInterface {
     private lateinit var binding: ActivityInitBinding
@@ -68,11 +74,11 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
                     if (checkAllInput()){
                         initViewModel.setDay(binding.tvReferenceDate.text.toString())
                         initViewModel.setLimitValue(binding.etLimitValue.text.toString())
-                        val initFinalCustomDialog = InitCheckCustomDialog (this@InitActivity,
+                        val initCheckCustomDialog = InitCheckCustomDialog (this@InitActivity,
                             initViewModel.getName().toString(),
                             initViewModel.getReferenceDate().toString(),
                             initViewModel.getLimitValue().toString())
-                        initFinalCustomDialog.show(supportFragmentManager, "init_check_custom_dialog")
+                        initCheckCustomDialog.show(supportFragmentManager, "init_check_custom_dialog")
                     }
                 }
             }
@@ -95,7 +101,7 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
                 flag = false
                 tvReferenceDateError.visibility = View.VISIBLE
             }
-            if (etLimitValue.text.toString().toInt() < 1000 || etLimitValue.text.isEmpty()) {
+            if (etLimitValue.text.isEmpty() || etLimitValue.text.toString().toInt() < 1000 || etLimitValue.text.isEmpty()) {
                 flag = false
                 tvLimitValueError.visibility = View.VISIBLE
             }
@@ -156,7 +162,19 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
     }
 
     // initCheckCustomDialog 입력완료 버튼 클릭
-    override fun onFinishButtonClicked() {
-        Log.e("MyTag", "Finishedddd")
+    override fun onFinishButtonClicked(bitmap: Bitmap) {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(CompressFormat.JPEG, 100, stream)
+        val byteArray: ByteArray = stream.toByteArray()
+
+        val intent = Intent(this, InitFinalActivity::class.java)
+        intent.putExtra("signBitmap", byteArray)
+        intent.putExtra("name", initViewModel.getName().toString())
+        intent.putExtra("referenceDate", initViewModel.getReferenceDate().toString())
+        intent.putExtra("limitValue", initViewModel.getLimitValue().toString())
+
+        startActivity(intent)
+        finish()
+
     }
 }

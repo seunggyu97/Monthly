@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
@@ -10,9 +11,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/view_round_white_6">
+        android:background="@drawable/view_round_white_6"
+        android:paddingHorizontal="30dp">
 
-        <TextView
+    <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="@{String.valueOf(viewModel.getName())}"
+                    android:text="@{String.valueOf(viewModel.inputDay)}"
                     android:textAppearance="@style/Text.Medium_16_Black" />
 
                 <TextView
@@ -155,11 +157,10 @@
                 android:textAppearance="@style/Text.Medium_12_grey" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_signLayout"
-            android:layout_width="match_parent"
+        <com.example.monthly.ui.CanvasView
+            android:id="@+id/canvas"
+            android:layout_width="300dp"
             android:layout_height="250dp"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/view_inner_shadow"
             android:orientation="horizontal"
@@ -168,12 +169,12 @@
             app:layout_constraintTop_toBottomOf="@id/ll_requestSign" />
 
         <LinearLayout
+            android:id="@+id/ll_canvas_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.resign()}"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@id/ll_signLayout"
-            app:layout_constraintTop_toBottomOf="@id/ll_signLayout">
+            app:layout_constraintEnd_toEndOf="@id/canvas"
+            app:layout_constraintTop_toBottomOf="@id/canvas">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -189,17 +190,17 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ll_signLayout">
+            app:layout_constraintTop_toBottomOf="@id/canvas">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_close"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_board_white"
@@ -209,7 +210,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_finish"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_board_white"
