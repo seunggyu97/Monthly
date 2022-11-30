@@ -2,12 +2,15 @@ package com.example.monthly.viewModel
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.monthly.dataclass.User
 import com.example.monthly.enumClass.FocusedEditTextType
+import com.example.monthly.repository.UserRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
+//class InitViewModel(private val repository: UserRepository, application: Application) : AndroidViewModel(application) {
 class InitViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _inputName = MutableLiveData<String>()
@@ -37,31 +40,18 @@ class InitViewModel(application: Application) : AndroidViewModel(application) {
         _inputLimitValue.value = limit
     }
 
+//    fun saveDatabase() {
+//        insert(User(0, _inputName.value.toString(), _inputDay.value?.toInt() ?: 1, _inputLimitValue.value?.toInt() ?: 1000))
+//    }
+
     fun getLimitValue(): String? = _inputLimitValue.value
     fun getReferenceDate(): String? = _inputDay.value
     fun getName(): String? = _inputName.value
 
-    fun dismiss(){
-        // Todo : Dialog 닫기 로직 추가할 것
-    }
-
-    fun inputComplete(){
-        // Todo : 입력완료 onClick 추가할 것
-    }
-
-    fun resign(){
-        // Todo : 다시서명 기능 구현할 것
-    }
-
-    fun saveImage(){
-        // Todo : 다짐서 이미지 저장 기능 구현할 것
-    }
-
-    fun initConfirm(){
-        // Todo : activity_init 확인 버튼 기능 구현할 것
-    }
-
-    fun initComplete(){
-        // Todo : activity_initfinal 완료 버튼 기능 구현할 것
-    }
+//    private fun insert(user: User) = viewModelScope.launch(Dispatchers.IO) {
+//        val newRowId = repository.insert(user)
+//        withContext(Dispatchers.Main) {
+////            Log.e("MyTag", )
+//        }
+//    }
 }

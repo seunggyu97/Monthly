@@ -27,6 +27,7 @@ class BottomSheetDialog(initDialogInterface: InitDialogInterface) : BottomSheetD
             tvClose.setOnClickListener {
                 dismiss()
             }
+
             tvComplete.setOnClickListener {
                 val referenceDateValue = npReferenceDay.value.toString()
                 initDialogInterface.onCompleteButtonClicked(referenceDateValue)
@@ -34,8 +35,8 @@ class BottomSheetDialog(initDialogInterface: InitDialogInterface) : BottomSheetD
             }
 
             npReferenceDay.apply {
-                maxValue = 31 // 최대값
-                minValue = 1 // 최소값
+                maxValue = 31 // 최댓값
+                minValue = 1 // 최솟값
                 value = 1 // 초기값
                 wrapSelectorWheel = false // 스크롤 무한반복 사용 여부
             }

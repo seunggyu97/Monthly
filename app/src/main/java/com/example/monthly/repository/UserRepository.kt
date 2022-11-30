@@ -5,8 +5,6 @@ import com.example.monthly.dataclass.User
 
 class UserRepository(private val dao : UserDAO) {
 
-    val subscribers = dao.getAllUsers()
-
     suspend fun insert(user: User): Long{
         return dao.insertUser(user)
     }

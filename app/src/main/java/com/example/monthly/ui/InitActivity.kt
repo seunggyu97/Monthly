@@ -1,7 +1,6 @@
 package com.example.monthly.ui
 
 import BottomSheetDialog
-import android.R.attr
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
@@ -10,6 +9,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -159,6 +159,13 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
     // 기준일 bottomSheetDialog 입력 버튼 클릭
     override fun onCompleteButtonClicked(content: String) {
         initViewModel.setDay(content)
+
+        // 키보드 올리기
+        val imm: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        binding.etLimitValue.postDelayed(Runnable {
+            binding.etLimitValue.requestFocus()
+            imm.showSoftInput(binding.etLimitValue, 0)
+        }, 100)
     }
 
     // initCheckCustomDialog 입력완료 버튼 클릭
@@ -166,6 +173,8 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
         val stream = ByteArrayOutputStream()
         bitmap.compress(CompressFormat.JPEG, 100, stream)
         val byteArray: ByteArray = stream.toByteArray()
+
+//        initViewModel.saveDatabase()
 
         val intent = Intent(this, InitFinalActivity::class.java)
         intent.putExtra("signBitmap", byteArray)
