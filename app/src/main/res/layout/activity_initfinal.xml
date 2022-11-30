@@ -34,7 +34,6 @@
                 android:id="@+id/tv_guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이먼쓸님의 소비를 절약할 수 있도록\n먼쓸리가 옆에서 도와드릴게요."
                 android:textAppearance="@style/Text.Regular_14_Black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_top" />
@@ -65,7 +64,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="이먼쓸의 다짐"
                     android:textAppearance="@style/Text.Regular_16_Black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -77,31 +75,40 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:padding="10dp"
-                    android:text="나 이먼쓸은 매월 10일을 기준으로 월 501,000원 한도로 소비하도록 노력하겠습니다."
                     android:textAppearance="@style/Text.Regular_14_Black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_inner_title" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/iv_sign"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="30dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_inner_main"/>
+                <TextView
+                    android:id="@+id/tv_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/initfinal_sign"
                     android:textAppearance="@style/Text.Regular_14_grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/tv_inner_main"
-                    app:layout_constraintTop_toBottomOf="@id/tv_inner_main" />
+                    app:layout_constraintStart_toStartOf="@id/iv_sign"
+                    app:layout_constraintEnd_toEndOf="@id/iv_sign"
+                    app:layout_constraintTop_toTopOf="@id/iv_sign"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_sign"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/ll_downloadButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/view_round_lightgrey_15"
+                android:background="@drawable/ripple_board_white_round"
                 android:elevation="10dp"
-                android:onClick="@{() -> viewModel.saveImage()}"
                 android:orientation="horizontal"
                 android:paddingHorizontal="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,11 +130,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
+            android:id="@+id/btn_complete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/ripple_board_main"
             android:text="@string/string_complete"
-            android:onClick="@{() -> viewModel.initComplete()}"
             android:textAppearance="@style/Text.Medium_16_White"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
