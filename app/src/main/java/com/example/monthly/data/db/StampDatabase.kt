@@ -1,12 +1,12 @@
-package com.example.monthly.db
+package com.example.monthly.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.monthly.dao.StampDAO
-import com.example.monthly.dataclass.Stamp
+import com.example.monthly.data.dao.StampDAO
+import com.example.monthly.data.dataclass.Stamp
 
 @Database(entities = [Stamp::class], version = 1)
 @TypeConverters( Converters::class)
@@ -17,7 +17,7 @@ abstract class StampDatabase : RoomDatabase() {
     companion object{
         @Volatile
         private var INSTANCE : StampDatabase? = null
-        fun getInstance(context: Context):StampDatabase{
+        fun getInstance(context: Context): StampDatabase {
             synchronized(this){
                 var instance = INSTANCE
                 if(instance == null){

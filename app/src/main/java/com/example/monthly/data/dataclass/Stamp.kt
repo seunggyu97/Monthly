@@ -1,4 +1,4 @@
-package com.example.monthly.dataclass
+package com.example.monthly.data.dataclass
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

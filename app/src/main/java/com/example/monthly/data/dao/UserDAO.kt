@@ -1,8 +1,8 @@
-package com.example.monthly.dao
+package com.example.monthly.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.monthly.dataclass.User
+import com.example.monthly.data.dataclass.User
 
 
 @Dao

@@ -1,14 +1,7 @@
 package com.example.monthly.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.monthly.dataclass.User
-import com.example.monthly.enumClass.FocusedEditTextType
-import com.example.monthly.repository.UserRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 //class InitViewModel(private val repository: UserRepository, application: Application) : AndroidViewModel(application) {
 class InitViewModel(application: Application) : AndroidViewModel(application) {

@@ -1,10 +1,7 @@
-package com.example.monthly.repository
+package com.example.monthly.data.repository
 
-import com.example.monthly.dao.DailyAccountDAO
-import com.example.monthly.dao.StampDAO
-import com.example.monthly.dataclass.DailyAccount
-import com.example.monthly.dataclass.Stamp
-import com.example.monthly.dataclass.User
+import com.example.monthly.data.dao.DailyAccountDAO
+import com.example.monthly.data.dataclass.DailyAccount
 
 class DailyAccountRepository(private val dao : DailyAccountDAO) {
 

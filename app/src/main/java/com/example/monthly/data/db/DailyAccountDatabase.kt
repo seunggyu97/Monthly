@@ -1,12 +1,12 @@
-package com.example.monthly.db
+package com.example.monthly.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.monthly.dao.DailyAccountDAO
-import com.example.monthly.dataclass.DailyAccount
+import com.example.monthly.data.dao.DailyAccountDAO
+import com.example.monthly.data.dataclass.DailyAccount
 
 @Database(entities = [DailyAccount::class], version = 1)
 @TypeConverters( Converters::class)
@@ -17,7 +17,7 @@ abstract class DailyAccountDatabase : RoomDatabase() {
     companion object{
         @Volatile
         private var INSTANCE : DailyAccountDatabase? = null
-        fun getInstance(context: Context):DailyAccountDatabase{
+        fun getInstance(context: Context): DailyAccountDatabase {
             synchronized(this){
                 var instance = INSTANCE
                 if(instance == null){

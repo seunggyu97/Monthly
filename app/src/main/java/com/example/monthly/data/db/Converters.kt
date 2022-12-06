@@ -1,4 +1,4 @@
-package com.example.monthly.db
+package com.example.monthly.data.db
 
 import androidx.room.TypeConverter
 import java.sql.Date

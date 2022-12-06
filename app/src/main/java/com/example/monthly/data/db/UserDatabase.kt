@@ -1,11 +1,11 @@
-package com.example.monthly.db
+package com.example.monthly.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.monthly.dao.UserDAO
-import com.example.monthly.dataclass.User
+import com.example.monthly.data.dao.UserDAO
+import com.example.monthly.data.dataclass.User
 
 @Database(entities = [User::class], version = 1)
 abstract class UserDatabase : RoomDatabase() {
@@ -15,7 +15,7 @@ abstract class UserDatabase : RoomDatabase() {
     companion object{
         @Volatile
         private var INSTANCE : UserDatabase? = null
-        fun getInstance(context: Context):UserDatabase{
+        fun getInstance(context: Context): UserDatabase {
             synchronized(this){
                 var instance = INSTANCE
                 if(instance == null){

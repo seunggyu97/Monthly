@@ -1,9 +1,14 @@
-package com.example.monthly.repository
+package com.example.monthly.data.repository
 
-import com.example.monthly.dao.UserDAO
-import com.example.monthly.dataclass.User
+import androidx.lifecycle.LiveData
+import com.example.monthly.data.dao.UserDAO
+import com.example.monthly.data.dataclass.User
+import kotlinx.coroutines.flow.Flow
 
 class UserRepository(private val dao : UserDAO) {
+
+    val users = dao.getAllUsers()
+    val getUserData : LiveData<List<User>> = dao.getAllUsers()
 
     suspend fun insert(user: User): Long{
         return dao.insertUser(user)
