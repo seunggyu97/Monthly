@@ -7,8 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 class UserRepository(private val dao : UserDAO) {
 
-    val users = dao.getAllUsers()
-    val getUserData : LiveData<List<User>> = dao.getAllUsers()
+    val getUser : LiveData<User> = dao.getUser()
 
     suspend fun insert(user: User): Long{
         return dao.insertUser(user)

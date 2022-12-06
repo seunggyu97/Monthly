@@ -21,7 +21,7 @@ interface UserDAO {
     suspend fun deleteAll() : Int
 
     @Query("SELECT * FROM user_data_table")
-    fun getAllUsers(): LiveData<List<User>>
+    fun getUser(): LiveData<User>
 
 //    @Query("SELECT * FROM member where id >= 10 ")
 

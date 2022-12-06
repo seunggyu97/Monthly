@@ -27,20 +27,13 @@ class SplashActivity : AppCompatActivity() {
         splashViewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
         setContentView(binding.root)
 
-        // Todo : Room DB에 사용자 데이터가 있는지 / 없는지 판별 후 액티비티 호출
-        // Todo : 데이터 있음 -> Intent - MainActivity
-        // Todo : 데이터 없음 -> Intent - InitActivity
-        splashViewModel.currentData.observe(this) {
-            val intent: Intent by lazy {
-                if (it == null) {
-                    Log.e("MyTag", "User 정보 없음")
-                    Intent(this, InitActivity::class.java)
-                }
-                // User 정보 없을 때
-                else {
-                    Log.e("MyTag", "User 정보 있음 User")
-                    Intent(this, MainActivity::class.java)
-                }
+        splashViewModel.user.observe(this) {
+            var intent = Intent(this@SplashActivity, InitActivity::class.java)
+            if(it != null) {
+                Log.e("MyTag","User Data is not Null")
+                intent = Intent(this@SplashActivity, MainActivity::class.java)
+            }else{
+                Log.e("MyTag","User Data is Null")
             }
             // 3초 지연
             Handler(Looper.getMainLooper()).postDelayed({

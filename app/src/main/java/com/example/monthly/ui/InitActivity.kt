@@ -174,7 +174,7 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
         bitmap.compress(CompressFormat.JPEG, 100, stream)
         val byteArray: ByteArray = stream.toByteArray()
 
-//        initViewModel.saveDatabase()
+        initViewModel.saveDatabase()
 
         val intent = Intent(this, InitFinalActivity::class.java)
         intent.putExtra("signBitmap", byteArray)
