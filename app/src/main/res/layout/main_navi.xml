@@ -14,11 +14,8 @@
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:fitsSystemWindows="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:context=".MainActivity"
+        android:layout_gravity="end">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/nav_layout"
@@ -54,6 +51,7 @@
                     app:layout_constraintTop_toTopOf="@id/tv_navi_name" />
 
                 <ImageButton
+                    android:id="@+id/ib_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_settings"

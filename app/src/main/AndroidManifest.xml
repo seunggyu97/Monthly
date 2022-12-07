@@ -16,6 +16,8 @@
         <activity android:name=".ui.InitActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.InitFinalActivity"/>
+        <activity android:name=".ui.SettingActivity"/>
+        <activity android:name=".ui.SettingPushActivity"/>
 
         <activity android:name=".ui.SplashActivity"
             android:theme="@style/Theme.Splash"

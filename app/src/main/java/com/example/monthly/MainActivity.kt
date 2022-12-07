@@ -3,25 +3,23 @@ package com.example.monthly
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import androidx.activity.ComponentActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.databinding.ActivityMainBinding
-import com.example.monthly.ui.InitActivity
+import com.example.monthly.databinding.ActivitySettingBinding
+import com.example.monthly.ui.SettingActivity
 import com.example.monthly.util.AppendCommaToPriceValue
 import com.example.monthly.viewModel.MainViewModel
 
+
 //import com.example.monthly.ui.theme.MonthlyTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BasicActivity(){
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +51,12 @@ class MainActivity : ComponentActivity() {
             viewNav.ibClose.setOnClickListener {
                 drawerLayout.closeDrawer(GravityCompat.END)
             }
+
+            viewNav.ibSetting.setOnClickListener {
+                Log.e("MyTag", "ibsetting clicked")
+                val intent = Intent(this@MainActivity, SettingActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         // 앱 status bar 투명하게 설정
@@ -68,4 +72,5 @@ class MainActivity : ComponentActivity() {
             statusBarColor = Color.TRANSPARENT
         }
     }
+
 }
