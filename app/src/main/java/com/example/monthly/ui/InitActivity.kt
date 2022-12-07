@@ -31,7 +31,7 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
         addTextChangedListener()
     }
 
-    fun init() {
+    private fun init() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_init)
         initViewModel = ViewModelProvider(this).get(InitViewModel::class.java)
 
