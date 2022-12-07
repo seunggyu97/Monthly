@@ -11,18 +11,18 @@ import androidx.room.PrimaryKey
  * @param referenceDate : 기준일 지정
  */
 @Entity(tableName = "user_data_table")
-data class User (
+data class User(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "user_id")
     val id: Long,
 
-    @ColumnInfo(name= "user_name")
+    @ColumnInfo(name = "user_name")
     var name: String,
 
-    @ColumnInfo(name = "limit_amount")
-    var limit: Int,
-
     @ColumnInfo(name = "reference_date")
-    var referenceDate: Int
+    var referenceDate: Int,
+
+    @ColumnInfo(name = "limit_amount")
+    var limit: Int
 )

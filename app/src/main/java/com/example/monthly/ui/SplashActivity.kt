@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.MainActivity
@@ -29,11 +28,10 @@ class SplashActivity : AppCompatActivity() {
 
         splashViewModel.user.observe(this) {
             var intent = Intent(this@SplashActivity, InitActivity::class.java)
-            if(it != null) {
-                Log.e("MyTag","User Data is not Null")
+//
+            it?.let {
                 intent = Intent(this@SplashActivity, MainActivity::class.java)
-            }else{
-                Log.e("MyTag","User Data is Null")
+                Log.e("MyTag", "User Data is not Null")
             }
             // 3초 지연
             Handler(Looper.getMainLooper()).postDelayed({

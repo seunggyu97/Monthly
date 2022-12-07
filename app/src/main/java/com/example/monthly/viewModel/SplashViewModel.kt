@@ -1,6 +1,7 @@
 package com.example.monthly.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.monthly.data.dataclass.User
 import com.example.monthly.data.db.UserDatabase
