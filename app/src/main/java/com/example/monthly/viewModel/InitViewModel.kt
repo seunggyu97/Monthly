@@ -3,6 +3,7 @@ package com.example.monthly.viewModel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.monthly.GlobalApplication
 import com.example.monthly.data.dataclass.User
 import com.example.monthly.data.db.UserDatabase
 import com.example.monthly.data.repository.UserRepository
@@ -55,6 +56,11 @@ class InitViewModel(application: Application) : AndroidViewModel(application) {
         val newRowId = repository.insert(user)
         withContext(Dispatchers.Main) {
             Log.e("MyTag", "DB Inserted, user_id = $newRowId")
+            GlobalApplication.prefs.setBoolean("pushSetting", true)
+            GlobalApplication.prefs.setInt("pushTime", 21)
+            GlobalApplication.prefs.setBoolean("securitySetting", false)
+            GlobalApplication.prefs.setBoolean("securityBioSetting", false)
+
         }
     }
 }

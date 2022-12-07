@@ -45,4 +45,19 @@
     <string name="navi_body_mymenu_changeName">이름 변경</string>
     <string name="navi_body_title_inquire">문의하기</string>
     <string name="navi_body_inquire_email">이메일로 문의하기</string>
+
+    <!-- Menu Title -->
+    <string name="menu_title_setting">앱 설정</string>
+    <string name="menu_title_setting_push">앱 푸시 알림 설정</string>
+    <string name="menu_title_setting_security">앱 잠금 설정</string>
+    <string name="menu_title_setting_password">비밀번호 설정</string>
+    <string name="menu_title_setting_password_modify">비밀번호 변경</string>
+
+    <!-- Setting Push -->
+    <string name="setting_push">앱 푸시 알림 설정</string>
+    <string name="setting_push_time">알림 시간 설정</string>
+    <string name="string_hour">시</string>
+    <string name="string_everyday">매일</string>
+    <string name="main_month_used">이번 달 사용 금액</string>
+
 </resources>

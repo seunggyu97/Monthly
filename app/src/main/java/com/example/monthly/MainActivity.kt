@@ -11,7 +11,6 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.databinding.ActivityMainBinding
-import com.example.monthly.databinding.ActivitySettingBinding
 import com.example.monthly.ui.SettingActivity
 import com.example.monthly.util.AppendCommaToPriceValue
 import com.example.monthly.viewModel.MainViewModel
@@ -19,7 +18,7 @@ import com.example.monthly.viewModel.MainViewModel
 
 //import com.example.monthly.ui.theme.MonthlyTheme
 
-class MainActivity : BasicActivity(){
+class MainActivity : BasicActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {

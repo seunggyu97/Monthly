@@ -13,5 +13,17 @@ data class User(
     val name: String,
 
     @SerializedName("push_setting")
-    val pushSetting: Int
+    val pushSetting: Boolean,
+
+    @SerializedName("push_time")
+    val pushTime: Int,
+
+    @SerializedName("security_setting")
+    val securitySetting: Boolean,
+
+    @SerializedName("security_password")
+    val securityPassword: Long,
+
+    @SerializedName("security_bio_setting")
+    val securityBioSetting: Boolean,
 ) : Parcelable
