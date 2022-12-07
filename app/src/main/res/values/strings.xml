@@ -37,4 +37,12 @@
     <string name="initfinal_inner_main2">일을 기준으로 월</string>
     <string name="initfinal_inner_main3">원 한도로 소비하도록 노력하겠습니다.</string>
     <string name="initfinal_sign">(서명)</string>
+
+    <!-- Navi -->
+    <string name="navi_body_title_mymenu">My 메뉴</string>
+    <string name="navi_body_mymenu_changeLimit">사용한도 변경</string>
+    <string name="navi_body_mymenu_changeReferencedate">기준일 변경</string>
+    <string name="navi_body_mymenu_changeName">이름 변경</string>
+    <string name="navi_body_title_inquire">문의하기</string>
+    <string name="navi_body_inquire_email">이메일로 문의하기</string>
 </resources>
