@@ -23,6 +23,4 @@ interface UserDAO {
     @Query("SELECT * FROM user_data_table")
     fun getUser(): LiveData<User>
 
-//    @Query("SELECT * FROM member where id >= 10 ")
-
 }

@@ -44,13 +44,15 @@ class InitViewModel(application: Application) : AndroidViewModel(application) {
         _inputLimitValue.value = limit
     }
 
-    fun saveDatabase() {
-        insert(User(0, _inputName.value.toString(), _inputDay.value?.toInt() ?: 1, _inputLimitValue.value?.toInt() ?: 1000))
-    }
-
     fun getLimitValue(): String? = _inputLimitValue.value
     fun getReferenceDate(): String? = _inputDay.value
     fun getName(): String? = _inputName.value
+
+    fun saveDatabase() {
+        insert(User(0, _inputName.value.toString(),
+            _inputDay.value?.toInt() ?: 1,
+            _inputLimitValue.value?.toInt() ?: 1000))
+    }
 
     private fun insert(user: User) = viewModelScope.launch(Dispatchers.IO) {
         val newRowId = repository.insert(user)

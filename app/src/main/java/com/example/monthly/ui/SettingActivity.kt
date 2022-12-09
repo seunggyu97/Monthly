@@ -58,4 +58,10 @@ class SettingActivity : BasicActivity() {
             overridePendingTransition(R.anim.anim_none, R.anim.anim_slide_out_right)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        settingViewModel.initialize()
+    }
 }

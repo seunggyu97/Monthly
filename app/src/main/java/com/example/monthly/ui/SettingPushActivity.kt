@@ -1,7 +1,8 @@
 package com.example.monthly.ui
 
-import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.BasicActivity
@@ -12,12 +13,14 @@ import com.example.monthly.enumClass.Status
 import com.example.monthly.viewModel.SettingPushViewModel
 import com.github.angads25.toggle.interfaces.OnToggledListener
 import com.github.angads25.toggle.model.ToggleableView
-import com.github.angads25.toggle.widget.LabeledSwitch
 
 
 class SettingPushActivity : BasicActivity() {
     private lateinit var binding: ActivitySettingPushBinding
     private lateinit var settingPushViewModel: SettingPushViewModel
+
+    private var isLableOn: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,11 +34,13 @@ class SettingPushActivity : BasicActivity() {
         // 앱 푸시 설정 상태 observe
         settingPushViewModel.pushStatus.observe(this) {
             it?.let {
-                if(it == Status.ON) {
+                if (it == Status.ON) {
                     // 푸시알림 설정한 상태
+                    Log.e("MyTag","푸시알림 설정한 상태")
                     setLabelOn()
-                }else{
+                } else {
                     // 설정하지 않은 상태
+                    Log.e("MyTag","푸시알림 설정하지 않은 상태")
                     setLabelOff()
                 }
             }
@@ -55,17 +60,30 @@ class SettingPushActivity : BasicActivity() {
 
             btnTogglePush.setOnToggledListener(object : OnToggledListener {
                 override fun onSwitched(toggleableView: ToggleableView?, isOn: Boolean) {
-                    if(isOn) {
+                    if (isOn) {
                         setLabelOn()
+                        settingPushViewModel.setPushStatus(true)
                     } else {
                         setLabelOff()
+                        settingPushViewModel.setPushStatus(false)
                     }
                 }
             })
+
+            cvSettingPushTime.setOnClickListener {
+                if(isLableOn)
+                    Toast.makeText(application, "시간 클릭 설정 ON", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
     }
 
+    /**
+     * == 푸시 알림 ON 상태로 설정 ==
+     * 토글 버튼 ON 상태로 변경
+     * 알림 시간 설정 항목들 활성화
+     **/
     fun setLabelOn() {
         binding.apply {
             btnTogglePush.labelOn
@@ -73,10 +91,16 @@ class SettingPushActivity : BasicActivity() {
             tvEveryday.setTextColor(getColor(R.color.font_black))
             tvHour.setTextColor(getColor(R.color.font_black))
             tvSettingTime.setTextColor(getColor(R.color.font_black))
-            GlobalApplication.prefs.setBoolean("pushSetting", true)
+            btnTogglePush.isOn = true
+            isLableOn = true
         }
     }
 
+    /**
+     * == 푸시 알림 OFF 상태로 설정 ==
+     * 토글 버튼 OFF 상태로 변경
+     * 알림 시간 설정 항목들 비활성화
+     **/
     fun setLabelOff() {
         binding.apply {
             btnTogglePush.labelOff
@@ -84,7 +108,8 @@ class SettingPushActivity : BasicActivity() {
             tvEveryday.setTextColor(getColor(R.color.font_grey_light))
             tvHour.setTextColor(getColor(R.color.font_grey_light))
             tvSettingTime.setTextColor(getColor(R.color.font_grey_light))
-            GlobalApplication.prefs.setBoolean("pushSetting", false)
+            btnTogglePush.isOn = false
+            isLableOn = false
         }
     }
 
