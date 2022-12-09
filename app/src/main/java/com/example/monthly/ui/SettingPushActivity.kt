@@ -1,5 +1,7 @@
 package com.example.monthly.ui
 
+import BottomSheetDialog
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -10,12 +12,13 @@ import com.example.monthly.GlobalApplication
 import com.example.monthly.R
 import com.example.monthly.databinding.ActivitySettingPushBinding
 import com.example.monthly.enumClass.Status
+import com.example.monthly.ui.dialogs.InitDialogInterface
 import com.example.monthly.viewModel.SettingPushViewModel
 import com.github.angads25.toggle.interfaces.OnToggledListener
 import com.github.angads25.toggle.model.ToggleableView
 
 
-class SettingPushActivity : BasicActivity() {
+class SettingPushActivity : BasicActivity(), InitDialogInterface {
     private lateinit var binding: ActivitySettingPushBinding
     private lateinit var settingPushViewModel: SettingPushViewModel
 
@@ -71,8 +74,9 @@ class SettingPushActivity : BasicActivity() {
             })
 
             cvSettingPushTime.setOnClickListener {
-                if(isLableOn)
-                    Toast.makeText(application, "시간 클릭 설정 ON", Toast.LENGTH_SHORT).show()
+                if(isLableOn){
+                    showBottomSheet()
+                }
             }
         }
 
@@ -113,10 +117,25 @@ class SettingPushActivity : BasicActivity() {
         }
     }
 
+    fun showBottomSheet() {
+        val setTime = Integer.parseInt(binding.tvSettingTime.text.toString())
+        val titleText = "알림 시간 설정"
+        val bottomSheet = BottomSheetDialog(this, 0, 23, setTime, titleText)
+        bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+    }
+
     override fun onPause() {
         super.onPause()
         if (isFinishing) {
             overridePendingTransition(R.anim.anim_none, R.anim.anim_slide_out_right)
         }
+    }
+
+    override fun onCompleteButtonClicked(content: String) {
+        settingPushViewModel.setTime(Integer.parseInt(content))
+    }
+
+    override fun onFinishButtonClicked(bitmap: Bitmap) {
+        // Nothing To Do
     }
 }

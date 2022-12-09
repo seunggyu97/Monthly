@@ -118,7 +118,8 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
     }
 
     fun showBottomSheet() {
-        val bottomSheet = BottomSheetDialog(this)
+        val titleText = "기준일 선택"
+        val bottomSheet = BottomSheetDialog(this, 1, 31, 1, titleText)
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
     }
 

@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 
-open class BasicActivity : ComponentActivity() {
+open class BasicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 이 화면은 왼쪽에서 오른쪽으로 슬라이딩 하면서 켜짐
