@@ -13,23 +13,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Monthly"
         tools:targetApi="31">
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ui.InitActivity"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.InitFinalActivity"/>
-        <activity android:name=".ui.SettingActivity"/>
-        <activity android:name=".ui.SettingPushActivity"/>
-<!--        <activity android:name=".ui.SettingSecurityActivity"/>-->
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
 
-        <activity android:name=".ui.SplashActivity"
-            android:theme="@style/Theme.Splash"
-            android:exported="true">
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".ui.InitActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.InitFinalActivity" />
+        <activity android:name=".ui.SettingActivity" />
+        <activity android:name=".ui.SettingPushActivity" /> <!-- <activity android:name=".ui.SettingSecurityActivity"/> -->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

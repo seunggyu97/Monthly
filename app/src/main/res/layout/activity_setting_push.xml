@@ -20,6 +20,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/bg_light"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -163,6 +164,19 @@
                 android:layout_height="wrap_content"
                 android:text="매일 정해진 시간에 푸시 알림을 보내도록 설정합니다."
                 android:textAppearance="@style/Text.Regular_14_grey"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_push_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_board_white_round"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="알림 테스트용 버튼"
+                android:padding="10dp"
+                android:backgroundTint="@color/bg_dark"
+                android:textAppearance="@style/Text.Bold_16_Blue"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
