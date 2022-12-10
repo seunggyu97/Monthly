@@ -38,7 +38,7 @@ class SettingPushViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun setTime(timeValue: Int) {
-        _time.value = timeValue
         GlobalApplication.prefs.setInt("pushTime", timeValue)
+        _time.value = timeValue
     }
 }

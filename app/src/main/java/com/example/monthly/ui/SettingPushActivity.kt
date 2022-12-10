@@ -22,6 +22,7 @@ import com.example.monthly.ui.dialogs.InitDialogInterface
 import com.example.monthly.viewModel.SettingPushViewModel
 import com.github.angads25.toggle.interfaces.OnToggledListener
 import com.github.angads25.toggle.model.ToggleableView
+import java.util.*
 
 
 class SettingPushActivity : BasicActivity(), InitDialogInterface {
@@ -56,12 +57,14 @@ class SettingPushActivity : BasicActivity(), InitDialogInterface {
             it?.let {
                 if (it == Status.ON) {
                     // 푸시알림 설정한 상태
-                    Log.e("MyTag","푸시알림 설정한 상태")
+                    Log.e("MyTag", "푸시알림 설정한 상태")
                     setLabelOn()
+                    setAlarm()
                 } else {
                     // 설정하지 않은 상태
-                    Log.e("MyTag","푸시알림 설정하지 않은 상태")
+                    Log.e("MyTag", "푸시알림 설정하지 않은 상태")
                     setLabelOff()
+                    cancleAlarm()
                 }
             }
         }
@@ -70,6 +73,8 @@ class SettingPushActivity : BasicActivity(), InitDialogInterface {
         settingPushViewModel.time.observe(this) {
             it?.let {
                 binding.tvSettingTime.text = it.toString()
+                setAlarm()
+                Log.e("MyTag","pref Time Value : ${GlobalApplication.prefs.getInt("pushTime")}")
             }
         }
 
@@ -89,7 +94,7 @@ class SettingPushActivity : BasicActivity(), InitDialogInterface {
             })
 
             cvSettingPushTime.setOnClickListener {
-                if(isLableOn){
+                if (isLableOn) {
                     showBottomSheet()
                 }
             }
@@ -103,6 +108,7 @@ class SettingPushActivity : BasicActivity(), InitDialogInterface {
                 ) // set : 일회성 알림
 
                 Toast.makeText(application, "5초 후에 알림 울림", Toast.LENGTH_SHORT).show()
+                Log.e("MyTag", "pushTime = ${GlobalApplication.prefs.getInt("pushTime")}")
             }
         }
 
@@ -153,6 +159,72 @@ class SettingPushActivity : BasicActivity(), InitDialogInterface {
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
     }
 
+    fun setAlarm() {
+        if (binding.tvSettingTime.text == GlobalApplication.prefs.getInt("pushTime")
+                .toString()
+        ) return
+        cancleAlarm() // 기존에 있던 알림은 취소
+//
+//        val calendar = Calendar.getInstance()
+//        val alarmTIme = GlobalApplication.prefs.getInt("pushTime")
+//
+//        calendar.set(Calendar.HOUR_OF_DAY, alarmTIme)
+//        calendar.set(Calendar.MINUTE, 0)
+//        calendar.set(Calendar.SECOND, 0)
+//
+//        if(calendar.before(Calendar.getInstance())) calendar.add(Calendar.DATE,1)
+//
+//        alarmManager.setRepeating(
+//            AlarmManager.RTC_WAKEUP,
+//            calendar.timeInMillis,
+//            AlarmManager.INTERVAL_DAY,
+//            pendingIntent
+//        )
+
+//        val repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES
+        /*
+        1. INTERVAL_FIFTEEN_MINUTES : 15분
+        2. INTERVAL_HALF_HOUR : 30분
+        3. INTERVAL_HOUR : 1시간
+        4. INTERVAL_HALF_DAY : 12시간
+        5. INTERVAL_DAY : 1일
+         */
+//        val triggerTime = (SystemClock.elapsedRealtime()
+//                + repeatInterval)
+//        alarmManager.setInexactRepeating(
+//            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//            triggerTime, repeatInterval,
+//            pendingIntent
+//        )
+
+        //알람 시간 설정
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, GlobalApplication.prefs.getInt("pushTime"))
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+        }
+
+        if (calendar.time < Date()) { //설정한 시간에 따라, 알람이 설정이 안될 수 있으므로 달 첫번째 부터의 시간을 설정
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        // setRepeating -> 정확, 배터리 소모 많음
+        // setInexactRepeating -> 부정확(알림 수신 정각 ~ 7분이상 소요), 배터리 소모 적음
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
+        Toast.makeText(application, "알람 설정됨 : ${SystemClock.elapsedRealtime()}", Toast.LENGTH_SHORT).show()
+        Log.e("MyTag","TEST")
+    }
+
+    fun cancleAlarm() {
+        alarmManager.cancel(pendingIntent)
+    }
+
     override fun onPause() {
         super.onPause()
         if (isFinishing) {
@@ -165,6 +237,7 @@ class SettingPushActivity : BasicActivity(), InitDialogInterface {
     }
 
     override fun onFinishButtonClicked(bitmap: Bitmap) {
+
         // Nothing To Do
     }
 }
