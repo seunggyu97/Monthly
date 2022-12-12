@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.monthly.GlobalApplication
 import com.example.monthly.MainActivity
 import com.example.monthly.databinding.ActivitySplashBinding
 import com.example.monthly.viewModel.SplashViewModel
@@ -32,12 +33,25 @@ class SplashActivity : AppCompatActivity() {
             it?.let {
                 intent = Intent(this@SplashActivity, MainActivity::class.java)
                 Log.e("MyTag", "User Data is not Null")
+
+                val password = GlobalApplication.prefs.getString("securityPassword")
+                if(password != "") {
+                    intent = Intent(this@SplashActivity, SettingPasswordActivity::class.java)
+                    intent.putExtra("alreadyHavePassword", true)
+                    intent.putExtra("appStart", true)
+                }
+
             }
             // 3초 지연
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(intent)
                 finish()
-            }, 3000)
+            }, 2000)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 }

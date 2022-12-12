@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.example.monthly.GlobalApplication
+import com.example.monthly.MainActivity
 import com.example.monthly.PasswordInputActivity
 import com.example.monthly.R
 import com.example.monthly.databinding.ActivitySettingPasswordBinding
@@ -26,6 +27,7 @@ class SettingPasswordActivity : PasswordInputActivity() {
     private lateinit var binding: ActivitySettingPasswordBinding
     private lateinit var settingPasswordViewModel: SettingPasswordViewModel
     private var isCheckingPassword = false // 진입 시점 구분 : 비밀번호 설정 되어있는 상태에서 화면에 진입한 경우 true, 이 경우 비밀번호를 확인하고 시작해야 함
+    private var isAppStarted = false // 진입 시점 구분 : 앱 처음 구동 후 비밀번호 입력창으로 넘어왔을 경우 true
     private var isFirstActivate = false // 진입 시점 구분 : 최초 비밀번호 설정 ON 으로 했을 경우 true
     private var isInCheckingProcess = false // 비밀번호 확인 과정 진행중인 경우 true
     private var isFromChangePassword = false // 비밀번호 변경을 통해 들어온 경우 true
@@ -42,6 +44,7 @@ class SettingPasswordActivity : PasswordInputActivity() {
         settingPasswordViewModel = ViewModelProvider(this).get(SettingPasswordViewModel::class.java)
 
         isCheckingPassword = intent.getBooleanExtra("alreadyHavePassword", false)
+        isAppStarted = intent.getBooleanExtra("appStart", false)
         isFirstActivate = intent.getBooleanExtra("firstActivate", false)
         isFromChangePassword = intent.getBooleanExtra("fromChangePassword", false)
 
@@ -167,6 +170,8 @@ class SettingPasswordActivity : PasswordInputActivity() {
         if (GlobalApplication.prefs.getString("securityPassword") == settingPasswordViewModel.inputPassword.value) {
             Log.e("mytag", "비번 일치")
             intent = Intent(applicationContext, SettingSecurityActivity::class.java)
+            if(isAppStarted) intent = Intent(applicationContext, MainActivity::class.java)
+
             startActivity(intent)
             FinishWithAnim()
         } else {
