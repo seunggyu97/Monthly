@@ -22,7 +22,7 @@ data class User(
     val securitySetting: Boolean,
 
     @SerializedName("security_password")
-    val securityPassword: Long,
+    val securityPassword: String,
 
     @SerializedName("security_bio_setting")
     val securityBioSetting: Boolean,

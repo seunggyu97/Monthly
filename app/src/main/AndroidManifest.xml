@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name = "android.permission.VIBRATE"/>
+
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
@@ -16,7 +18,8 @@
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+
 
         <activity android:name=".MainActivity" />
         <activity
@@ -24,7 +27,9 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.InitFinalActivity" />
         <activity android:name=".ui.SettingActivity" />
-        <activity android:name=".ui.SettingPushActivity" /> <!-- <activity android:name=".ui.SettingSecurityActivity"/> -->
+        <activity android:name=".ui.SettingPushActivity" />
+        <activity android:name=".ui.SettingSecurityActivity"/>
+        <activity android:name=".ui.SettingPasswordActivity"/>
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"

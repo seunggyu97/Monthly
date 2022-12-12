@@ -65,8 +65,8 @@ class MySharedPreference(context: Context) {
             prefs.getBoolean("pushSetting", DEFAULT_BOOLEAN_VALUE),
             prefs.getInt("pushTime", DEFAULT_INT_VALUE),
             prefs.getBoolean("securitySetting", DEFAULT_BOOLEAN_VALUE),
-            prefs.getLong("securityPassword", DEFAULT_LONG_VALUE),
-            prefs.getBoolean("securityBioSetting", DEFAULT_BOOLEAN_VALUE),
+            prefs.getString("securityPassword", DEFAULT_STRING_VALUE)!!,
+            prefs.getBoolean("biometricAuthSetting", DEFAULT_BOOLEAN_VALUE),
 
         )
     }

@@ -80,6 +80,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Text.Medium_24_Grey" parent="android:TextAppearance">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/font_grey</item>
+        <item name="android:fontFamily">@font/notosans_kr_medium</item>
+    </style>
+
     <style name="Text.Bold_20_Black" parent="android:TextAppearance">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/font_black</item>
@@ -178,6 +184,13 @@
     <style name="Text.Bold_16_White" parent="android:TextAppearance">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Bold_16_grey" parent="android:TextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/font_grey</item>
         <item name="android:fontFamily">@font/app_font</item>
         <item name="android:textStyle">bold</item>
     </style>

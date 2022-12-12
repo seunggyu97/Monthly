@@ -25,9 +25,7 @@ class SettingViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun initialize() {
-        if(GlobalApplication.prefs.getBoolean("securitySetting")) {
-            _securityStatus.value = Status.ON
-        }
+        if(GlobalApplication.prefs.getString("securityPassword") != "") _securityStatus.value = Status.ON
         else _securityStatus.value = Status.OFF
 
         if(GlobalApplication.prefs.getBoolean("pushSetting")) _pushStatus.value = Status.ON

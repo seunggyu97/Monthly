@@ -9,6 +9,19 @@
     <string name="string_close">닫기</string>
     <string name="string_inputComplete">입력 완료</string>
     <string name="string_complete">완료</string>
+    <string name="string_cancel">취소</string>
+
+    <!-- Numbers -->
+    <string name="number_0">0</string>
+    <string name="number_1">1</string>
+    <string name="number_2">2</string>
+    <string name="number_3">3</string>
+    <string name="number_4">4</string>
+    <string name="number_5">5</string>
+    <string name="number_6">6</string>
+    <string name="number_7">7</string>
+    <string name="number_8">8</string>
+    <string name="number_9">9</string>
 
     <!-- InitActivity -->
     <string name="init_top">처음이신가요?</string>
@@ -59,5 +72,18 @@
     <string name="string_hour">시</string>
     <string name="string_everyday">매일</string>
     <string name="main_month_used">이번 달 사용 금액</string>
+
+    <!-- Setting Security -->
+    <string name="setting_security">비밀번호 설정</string>
+    <string name="setting_security_change_password">비밀번호 변경</string>
+    <string name="setting_security_biometric_auth">생체인증 잠금 설정</string>
+    <string name="setting_security_title">생체인증 잠금 설정</string>
+
+    <!-- Setting Password -->
+    <string name="insert_password">비밀번호 입력</string>
+    <string name="insert_password_guide">설정할 비밀번호를 입력해 주세요.</string>
+    <string name="modify_password_guide">새로 사용할 비밀번호를 입력해 주세요.</string>
+    <string name="modify_password_guide_onemore">확인을 위해 다시 한번 입력해 주세요</string>
+    <string name="modify_password_guide_error">비밀번호가 일치하지 않습니다.\n처음부터 다시 입력해 주세요.</string>
 
 </resources>

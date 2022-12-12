@@ -164,38 +164,6 @@ class SettingPushActivity : BasicActivity(), InitDialogInterface {
                 .toString()
         ) return
         cancleAlarm() // 기존에 있던 알림은 취소
-//
-//        val calendar = Calendar.getInstance()
-//        val alarmTIme = GlobalApplication.prefs.getInt("pushTime")
-//
-//        calendar.set(Calendar.HOUR_OF_DAY, alarmTIme)
-//        calendar.set(Calendar.MINUTE, 0)
-//        calendar.set(Calendar.SECOND, 0)
-//
-//        if(calendar.before(Calendar.getInstance())) calendar.add(Calendar.DATE,1)
-//
-//        alarmManager.setRepeating(
-//            AlarmManager.RTC_WAKEUP,
-//            calendar.timeInMillis,
-//            AlarmManager.INTERVAL_DAY,
-//            pendingIntent
-//        )
-
-//        val repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES
-        /*
-        1. INTERVAL_FIFTEEN_MINUTES : 15분
-        2. INTERVAL_HALF_HOUR : 30분
-        3. INTERVAL_HOUR : 1시간
-        4. INTERVAL_HALF_DAY : 12시간
-        5. INTERVAL_DAY : 1일
-         */
-//        val triggerTime = (SystemClock.elapsedRealtime()
-//                + repeatInterval)
-//        alarmManager.setInexactRepeating(
-//            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-//            triggerTime, repeatInterval,
-//            pendingIntent
-//        )
 
         //알람 시간 설정
         val calendar: Calendar = Calendar.getInstance().apply {
