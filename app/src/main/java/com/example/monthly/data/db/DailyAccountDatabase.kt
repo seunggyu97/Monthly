@@ -9,7 +9,6 @@ import com.example.monthly.data.dao.DailyAccountDAO
 import com.example.monthly.data.dataclass.DailyAccount
 
 @Database(entities = [DailyAccount::class], version = 1)
-@TypeConverters( Converters::class)
 abstract class DailyAccountDatabase : RoomDatabase() {
 
     abstract val dailyAccountDAO : DailyAccountDAO

@@ -23,4 +23,7 @@ interface DailyAccountDAO {
     @Query("SELECT * FROM daily_account_table")
     fun getAllDaily(): LiveData<List<DailyAccount>>
 
+    @Query("SELECT * FROM daily_account_table WHERE daily_month = :month")
+    fun getAllByMonth(month: String): LiveData<List<DailyAccount>?>
+
 }
