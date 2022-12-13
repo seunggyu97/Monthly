@@ -30,6 +30,7 @@
         <activity android:name=".ui.SettingPushActivity" />
         <activity android:name=".ui.SettingSecurityActivity"/>
         <activity android:name=".ui.SettingPasswordActivity"/>
+        <activity android:name=".ui.ExpenditureStatisticsActivity"/>
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"

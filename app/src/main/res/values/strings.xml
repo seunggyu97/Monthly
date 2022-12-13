@@ -10,6 +10,7 @@
     <string name="string_inputComplete">입력 완료</string>
     <string name="string_complete">완료</string>
     <string name="string_cancel">취소</string>
+    <string name="string_minus">-</string>
 
     <!-- Numbers -->
     <string name="number_0">0</string>
@@ -87,6 +88,7 @@
     <string name="modify_password_guide_error">비밀번호가 일치하지 않습니다.\n처음부터 다시 입력해 주세요.</string>
 
     <!-- Expenditure Statistics -->
+    <string name="statistics_title">지출 통계</string>
     <string name="statistics_add_button">+ 내역 추가</string>
     <string name="statistics_total_expend">총 지출</string>
     <string name="statistics_daily_average">일 평균 사용금액</string>

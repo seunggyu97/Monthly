@@ -12,6 +12,7 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.databinding.ActivityMainBinding
+import com.example.monthly.ui.ExpenditureStatisticsActivity
 import com.example.monthly.ui.SettingActivity
 import com.example.monthly.util.AppendCommaToPriceValue
 import com.example.monthly.viewModel.MainViewModel
@@ -56,6 +57,10 @@ class MainActivity : AppCompatActivity() {
                 Log.e("MyTag", "ibsetting clicked")
                 val intent = Intent(this@MainActivity, SettingActivity::class.java)
                 startActivity(intent)
+            }
+
+            viewGraph.setOnClickListener {
+                startActivity(Intent(applicationContext, ExpenditureStatisticsActivity::class.java))
             }
         }
 

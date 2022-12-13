@@ -6,4 +6,11 @@ class Constant {
         const val NOTIFICATION_ID = 0
         const val CHANNEL_ID = "notification_channel"
     }
+
+    data class Expenditure (
+        val day: String,
+        val dayOfWeek: String,
+        val totalValue: String
+            )
+
 }

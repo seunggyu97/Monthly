@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.monthly.viewModel.SettingPasswordViewModel" />
+            type="com.example.monthly.viewModel.ExpenditureStatisticsViewModel" />
 
         <variable
             name="title"
@@ -50,14 +50,14 @@
                 android:backgroundTint="@color/bg_light"
                 android:paddingHorizontal="10dp"
                 android:text="@string/statistics_add_button"
-                android:textAppearance="@style/Text.Bold_20_Black"
+                android:textAppearance="@style/Text.Bold_14_Black"
                 app:layout_constraintBottom_toBottomOf="@id/view_header"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/view_header" />
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -87,25 +87,25 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView
+                                android:id="@+id/iv_prev_month"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:onClick="@{() -> viewModel.changeToPrevMonth()"
                                 android:padding="12dp"
                                 android:src="@drawable/ic_baseline_keyboard_arrow_left_36" />
 
                             <TextView
+                                android:id="@+id/tv_expenditure_month"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="@{viewModel.currentMonth}"
                                 android:textAppearance="@style/Text.Bold_20_Black" />
 
                             <ImageView
+                                android:id="@+id/iv_next_month"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:onClick="@{() -> viewModel.changeToNextMonth()"
                                 android:padding="12dp"
                                 android:src="@drawable/ic_baseline_keyboard_arrow_right_36" />
                         </LinearLayout>
@@ -132,7 +132,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
-                                android:text="@{viewModel.totalExpend}"
+                                android:text="30000"
                                 android:textAppearance="@style/Text.Regular_16_Black"
                                 app:layout_constraintBottom_toBottomOf="@id/tv_title_total_expend"
                                 app:layout_constraintStart_toEndOf="@id/tv_title_total_expend"
@@ -161,7 +161,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
-                                android:text="@{viewModel.referenceDate}"
                                 android:textAppearance="@style/Text.Regular_16_Black"
                                 app:layout_constraintBottom_toBottomOf="@id/tv_title_reference_date"
                                 app:layout_constraintStart_toEndOf="@id/tv_title_reference_date"
@@ -190,7 +189,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
-                                android:text="@{viewModel.dailyAverage}"
+                                android:text="3030"
                                 android:textAppearance="@style/Text.Regular_16_Black"
                                 app:layout_constraintBottom_toBottomOf="@id/tv_title_daily_average"
                                 app:layout_constraintStart_toEndOf="@id/tv_title_daily_average"
@@ -219,7 +218,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
-                                android:text="@{viewModel.dailyRecommend}"
+                                android:text="3030"
                                 android:textAppearance="@style/Text.Regular_16_Black"
                                 app:layout_constraintBottom_toBottomOf="@id/tv_title_daily_recommend"
                                 app:layout_constraintStart_toEndOf="@id/tv_title_daily_recommend"
@@ -245,41 +244,39 @@
                                 app:layout_constraintStart_toEndOf="@id/tv_string_daily_recommend_won"
                                 app:layout_constraintTop_toTopOf="@id/tv_string_daily_recommend_won" />
 
-                            <LinearLayout
-                                android:id="@+id/ll_help"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="20dp"
+
+                            <ImageView
+                                android:id="@+id/iv_helpguide"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:orientation="vertical"
-                                android:paddingBottom="10dp"
+                                android:src="@drawable/ic_drop_up"
                                 android:visibility="invisible"
                                 app:layout_constraintEnd_toEndOf="@id/iv_help"
                                 app:layout_constraintStart_toStartOf="@id/iv_help"
-                                app:layout_constraintTop_toTopOf="@id/iv_help">
+                                app:layout_constraintTop_toTopOf="@id/iv_help" />
 
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/ic_drop_up" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/view_round_extralight_15"
-                                    android:paddingHorizontal="10dp"
-                                    android:text="@string/daily_recommend_help_body_text"
-                                    android:textAppearance="@style/Text.Medium_12_grey" />
-                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/iv_helpguide_body"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="20dp"
+                                android:background="@drawable/view_round_extralight_15"
+                                android:paddingHorizontal="10dp"
+                                android:text="@string/daily_recommend_help_body_text"
+                                android:textAppearance="@style/Text.Medium_12_grey"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/iv_helpguide" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
