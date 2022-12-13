@@ -86,4 +86,11 @@
     <string name="modify_password_guide_onemore">확인을 위해 다시 한번 입력해 주세요</string>
     <string name="modify_password_guide_error">비밀번호가 일치하지 않습니다.\n처음부터 다시 입력해 주세요.</string>
 
+    <!-- Expenditure Statistics -->
+    <string name="statistics_add_button">+ 내역 추가</string>
+    <string name="statistics_total_expend">총 지출</string>
+    <string name="statistics_daily_average">일 평균 사용금액</string>
+    <string name="statistics_daily_recommend">일일 권장 사용금액</string>
+    <string name="daily_recommend_help_body_text">일일 권장 사용금액 = (설정 한도 - 오늘까지 사용 합계) / 남은 일 수</string>
+
 </resources>

@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.monthly.databinding.DialogInitcheckBinding
 import com.example.monthly.ui.CanvasView
+import com.example.monthly.util.AppendCommaToPriceValue
 import com.example.monthly.viewModel.InitViewModel
 
 
@@ -38,7 +39,7 @@ class InitCheckCustomDialog(
         this.initDialogInterface = initDialogInterface
         this.name = name
         this.referenceDate = referenceDate
-        this.limitValue = limitValue
+        this.limitValue = AppendCommaToPriceValue(limitValue.toInt())
     }
 
     override fun onCreateView(

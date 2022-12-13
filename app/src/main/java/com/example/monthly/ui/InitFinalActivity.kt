@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.MainActivity
 import com.example.monthly.R
 import com.example.monthly.databinding.ActivityInitfinalBinding
+import com.example.monthly.util.AppendCommaToPriceValue
 import com.example.monthly.util.ConvertToBitmap
 import com.example.monthly.util.SaveBitmapToPng
 import com.example.monthly.viewModel.InitViewModel
@@ -52,7 +53,7 @@ class InitFinalActivity : AppCompatActivity(){
             .append(getString(R.string.initfinal_inner_main)).append(" ")
             .append(referenceDate)
             .append(getString(R.string.initfinal_inner_main2)).append(" ")
-            .append(limitValue)
+            .append(AppendCommaToPriceValue(limitValue.toInt()))
             .append(getString(R.string.initfinal_inner_main3))
 
         binding.apply {

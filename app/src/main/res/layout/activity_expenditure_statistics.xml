@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.monthly.viewModel.SettingPasswordViewModel" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="activity"
+            type="android.app.Activity" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/font_grey_extra_light">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/view_header"
+                layout="@layout/view_menu_header"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:activity="@{activity}"
+                bind:title="@{title}" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_add_expend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ripple_board_white_round"
+                android:backgroundTint="@color/bg_light"
+                android:paddingHorizontal="10dp"
+                android:text="@string/statistics_add_button"
+                android:textAppearance="@style/Text.Bold_20_Black"
+                app:layout_constraintBottom_toBottomOf="@id/view_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/view_header" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_header">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/font_grey_extra_light">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_expend_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bg_light"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/ll_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:onClick="@{() -> viewModel.changeToPrevMonth()"
+                                android:padding="12dp"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_left_36" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@{viewModel.currentMonth}"
+                                android:textAppearance="@style/Text.Bold_20_Black" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:onClick="@{() -> viewModel.changeToNextMonth()"
+                                android:padding="12dp"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_right_36" />
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ll_month">
+
+                            <TextView
+                                android:id="@+id/tv_title_total_expend"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/statistics_total_expend"
+                                android:textAppearance="@style/Text.Medium_16_Black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_total_expend"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:text="@{viewModel.totalExpend}"
+                                android:textAppearance="@style/Text.Regular_16_Black"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_title_total_expend"
+                                app:layout_constraintStart_toEndOf="@id/tv_title_total_expend"
+                                app:layout_constraintTop_toTopOf="@id/tv_title_total_expend" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/string_won"
+                                android:textAppearance="@style/Text.Regular_16_Black"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_total_expend"
+                                app:layout_constraintStart_toEndOf="@id/tv_total_expend"
+                                app:layout_constraintTop_toTopOf="@id/tv_total_expend" />
+
+                            <TextView
+                                android:id="@+id/tv_title_reference_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/init_referenceDate"
+                                android:textAppearance="@style/Text.Medium_16_Black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_title_total_expend" />
+
+                            <TextView
+                                android:id="@+id/tv_reference_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:text="@{viewModel.referenceDate}"
+                                android:textAppearance="@style/Text.Regular_16_Black"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_title_reference_date"
+                                app:layout_constraintStart_toEndOf="@id/tv_title_reference_date"
+                                app:layout_constraintTop_toTopOf="@id/tv_title_reference_date" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/string_day"
+                                android:textAppearance="@style/Text.Regular_16_Black"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_reference_date"
+                                app:layout_constraintStart_toEndOf="@id/tv_reference_date"
+                                app:layout_constraintTop_toTopOf="@id/tv_reference_date" />
+
+                            <TextView
+                                android:id="@+id/tv_title_daily_average"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/statistics_daily_average"
+                                android:textAppearance="@style/Text.Medium_16_Black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_title_reference_date" />
+
+                            <TextView
+                                android:id="@+id/tv_daily_average"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:text="@{viewModel.dailyAverage}"
+                                android:textAppearance="@style/Text.Regular_16_Black"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_title_daily_average"
+                                app:layout_constraintStart_toEndOf="@id/tv_title_daily_average"
+                                app:layout_constraintTop_toTopOf="@id/tv_title_daily_average" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/string_won"
+                                android:textAppearance="@style/Text.Regular_16_Black"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_daily_average"
+                                app:layout_constraintStart_toEndOf="@id/tv_daily_average"
+                                app:layout_constraintTop_toTopOf="@id/tv_daily_average" />
+
+                            <TextView
+                                android:id="@+id/tv_title_daily_recommend"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/statistics_daily_recommend"
+                                android:textAppearance="@style/Text.Medium_16_Black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_title_daily_average" />
+
+                            <TextView
+                                android:id="@+id/tv_daily_recommend"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:text="@{viewModel.dailyRecommend}"
+                                android:textAppearance="@style/Text.Regular_16_Black"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_title_daily_recommend"
+                                app:layout_constraintStart_toEndOf="@id/tv_title_daily_recommend"
+                                app:layout_constraintTop_toTopOf="@id/tv_title_daily_recommend" />
+
+                            <TextView
+                                android:id="@+id/tv_string_daily_recommend_won"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/string_won"
+                                android:textAppearance="@style/Text.Regular_16_Black"
+                                app:layout_constraintBottom_toBottomOf="@id/tv_daily_recommend"
+                                app:layout_constraintStart_toEndOf="@id/tv_daily_recommend"
+                                app:layout_constraintTop_toTopOf="@id/tv_daily_recommend" />
+
+                            <ImageView
+                                android:id="@+id/iv_help"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="10dp"
+                                android:paddingTop="10dp"
+                                android:src="@drawable/ic_baseline_help_24"
+                                app:layout_constraintStart_toEndOf="@id/tv_string_daily_recommend_won"
+                                app:layout_constraintTop_toTopOf="@id/tv_string_daily_recommend_won" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_help"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginTop="15dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:orientation="vertical"
+                                android:paddingBottom="10dp"
+                                android:visibility="invisible"
+                                app:layout_constraintEnd_toEndOf="@id/iv_help"
+                                app:layout_constraintStart_toStartOf="@id/iv_help"
+                                app:layout_constraintTop_toTopOf="@id/iv_help">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:src="@drawable/ic_drop_up" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/view_round_extralight_15"
+                                    android:paddingHorizontal="10dp"
+                                    android:text="@string/daily_recommend_help_body_text"
+                                    android:textAppearance="@style/Text.Medium_12_grey" />
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/bg_light"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cl_expend_top" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

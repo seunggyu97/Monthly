@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         mainViewModel.user.observe(this) {
             it?.let {
