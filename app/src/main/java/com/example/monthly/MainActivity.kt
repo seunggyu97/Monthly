@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        setCurrentMonthExpend()
         // 앱 status bar 투명하게 설정
         makeStatusBarTransParent()
     }
@@ -76,6 +77,15 @@ class MainActivity : AppCompatActivity() {
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             statusBarColor = Color.TRANSPARENT
         }
+    }
+
+    fun setCurrentMonthExpend() {
+        binding.tvMainHeaderValue.text = AppendCommaToPriceValue(GlobalApplication.prefs.getInt("currentMonthExpend")) + "원"
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setCurrentMonthExpend()
     }
 
 }

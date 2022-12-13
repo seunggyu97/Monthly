@@ -30,8 +30,10 @@ import com.example.monthly.viewModel.ExpenditureStatisticsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.Year
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.exp
 
 
 class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialogInterface {
@@ -157,7 +159,48 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
 
         expenditureStatisticsViewModel.totalPrice.observe(this) {
             it?.let {
+                val cal = Calendar.getInstance()
+
                 binding.tvTotalExpend.text = AppendCommaToPriceValue(it)
+
+                binding.tvDailyAverage.text = AppendCommaToPriceValue(it/cal.getActualMaximum(Calendar.DAY_OF_MONTH))
+                binding.tvDailyRecommend.visibility = View.GONE
+                binding.tvTitleDailyRecommend.visibility = View.GONE
+                binding.tvStringDailyRecommendWon.visibility = View.GONE
+                binding.ivHelp.visibility = View.GONE
+                binding.ivHelpguide.visibility = View.GONE
+                binding.ivHelpguideBody.visibility = View.GONE
+
+                if(expenditureStatisticsViewModel._cal.get(Calendar.YEAR) == cal.get(Calendar.YEAR)) {
+                    if(expenditureStatisticsViewModel._cal.get(Calendar.MONTH) == cal.get(Calendar.MONTH)){
+                        // 현재달을 표시중일때
+
+                        GlobalApplication.prefs.setInt("currentMonthExpend", it) // SharedPref에 이번달지출금액 저장(MainActivity 표시용)
+
+                        binding.tvDailyAverage.text = AppendCommaToPriceValue(it/cal.get(Calendar.DAY_OF_MONTH))
+                        val remainDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH) - cal.get(Calendar.DAY_OF_MONTH)
+                        binding.tvDailyRecommend.text = AppendCommaToPriceValue(
+                            (expenditureStatisticsViewModel.user.value!!.limit - it)/remainDay
+                        )
+
+                        binding.tvDailyRecommend.visibility = View.VISIBLE
+                        binding.tvTitleDailyRecommend.visibility = View.VISIBLE
+                        binding.tvStringDailyRecommendWon.visibility = View.VISIBLE
+                        binding.ivHelp.visibility = View.VISIBLE
+                        binding.ivHelpguide.visibility = View.INVISIBLE
+                        binding.ivHelpguideBody.visibility = View.INVISIBLE
+                    }
+                }
+
+                if (binding.tvDailyRecommend.text.toString().toInt() < binding.tvDailyAverage.text.toString().toInt()){
+                    binding.tvDailyAverage.setTextColor(getColor(R.color.error))
+                    binding.tvTitleDailyAverage.setTextColor(getColor(R.color.error))
+                    binding.tvDailyAverageWon.setTextColor(getColor(R.color.error))
+                } else {
+                    binding.tvDailyAverage.setTextColor(getColor(R.color.font_black))
+                    binding.tvTitleDailyAverage.setTextColor(getColor(R.color.font_black))
+                    binding.tvDailyAverageWon.setTextColor(getColor(R.color.font_black))
+                }
             }
         }
 

@@ -26,4 +26,8 @@ data class User(
 
     @SerializedName("security_bio_setting")
     val securityBioSetting: Boolean,
+
+    @SerializedName("currentMonthExpend")
+    val currentMonthExpend: Int
+
 ) : Parcelable

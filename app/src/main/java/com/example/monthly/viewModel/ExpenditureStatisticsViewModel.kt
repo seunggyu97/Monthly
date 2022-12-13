@@ -21,7 +21,7 @@ import kotlin.collections.ArrayList
 
 class ExpenditureStatisticsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _cal = GregorianCalendar()
+    val _cal = GregorianCalendar()
     private val _current = Calendar.getInstance()
     private val repository: DailyAccountRepository
     private val _dailyAccount = MutableLiveData<DailyAccount>()

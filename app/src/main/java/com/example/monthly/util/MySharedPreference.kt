@@ -67,6 +67,7 @@ class MySharedPreference(context: Context) {
             prefs.getBoolean("securitySetting", DEFAULT_BOOLEAN_VALUE),
             prefs.getString("securityPassword", DEFAULT_STRING_VALUE)!!,
             prefs.getBoolean("biometricAuthSetting", DEFAULT_BOOLEAN_VALUE),
+            prefs.getInt("currentMonthExpend", DEFAULT_INT_VALUE),
 
         )
     }
