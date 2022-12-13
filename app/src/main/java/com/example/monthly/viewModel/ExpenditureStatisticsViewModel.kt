@@ -29,6 +29,7 @@ class ExpenditureStatisticsViewModel(application: Application) : AndroidViewMode
     private var _mdate = MutableLiveData<String>()
     private var _mMonth = MutableLiveData<String>()
     private var _price = MutableLiveData<Int>()
+    private var _totalPrice = MutableLiveData<Int>()
     private var _category = MutableLiveData<String>()
     private var _memo = MutableLiveData<String>()
     private val userRepository: UserRepository
@@ -42,6 +43,7 @@ class ExpenditureStatisticsViewModel(application: Application) : AndroidViewMode
     val mDate: LiveData<String> = _mdate
     val mMonth: LiveData<String> = _mMonth
     val price: LiveData<Int> = _price
+    val totalPrice: LiveData<Int> = _totalPrice
     val category: LiveData<String> = _category
     val memo: LiveData<String> = _memo
 
@@ -62,6 +64,7 @@ class ExpenditureStatisticsViewModel(application: Application) : AndroidViewMode
     }
 
     fun changeToPrevMonth() {
+        _cal.set(Calendar.MONTH, _month.value!!.toInt())
         _cal.add(Calendar.MONTH, -1)
         _month.value = _cal.get(Calendar.MONTH)
         _mMonth.value = _cal.get(Calendar.YEAR).toString() + "-" + (_cal.get(Calendar.MONTH)+1)
@@ -69,10 +72,15 @@ class ExpenditureStatisticsViewModel(application: Application) : AndroidViewMode
     }
 
     fun changeToNextMonth() {
+        _cal.set(Calendar.MONTH, _month.value!!.toInt())
         _cal.add(Calendar.MONTH, +1)
         _month.value = _cal.get(Calendar.MONTH)
         _mMonth.value = _cal.get(Calendar.YEAR).toString() + "-" + (_cal.get(Calendar.MONTH)+1)
         Log.e("myTag", _mMonth.value.toString())
+    }
+
+    fun setTotalPrice(price: Int) {
+        _totalPrice.value = price
     }
 
     fun setDate(date: String) {
@@ -81,6 +89,10 @@ class ExpenditureStatisticsViewModel(application: Application) : AndroidViewMode
 
     fun setMonth(month: String) {
         _mMonth.value = month
+    }
+
+    fun setMonthVal(month: Int) {
+        _month.value = month
     }
 
     fun setPrice(price: Int) {

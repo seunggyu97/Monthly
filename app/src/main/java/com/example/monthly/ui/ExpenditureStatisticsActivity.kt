@@ -25,6 +25,7 @@ import com.example.monthly.databinding.ActivityExpenditureStatisticsBinding
 import com.example.monthly.enumClass.ServiceType
 import com.example.monthly.ui.dialogs.DailyInsertCustomDialog
 import com.example.monthly.ui.dialogs.DailyInsertDialogInterface
+import com.example.monthly.util.AppendCommaToPriceValue
 import com.example.monthly.viewModel.ExpenditureStatisticsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,6 +38,7 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
     private lateinit var binding: ActivityExpenditureStatisticsBinding
     private lateinit var expenditureStatisticsViewModel: ExpenditureStatisticsViewModel
     private lateinit var adapter: ExpenditureListAdapter
+    private lateinit var charTmpArr: List<String>
     private val expenditureListAdapter: ExpenditureListAdapter by lazy {
         ExpenditureListAdapter()
     }
@@ -77,16 +79,20 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
         // date LiveData 변경 감지
         expenditureStatisticsViewModel.mMonth.observe(this, androidx.lifecycle.Observer {
             Log.d("date", it.toString())
-            val charArr = it.split("-")
+            charTmpArr = it.split("-")
             val sb = StringBuilder()
-            sb.append(charArr[0]).append('-').append(charArr[1])
+            sb.append(charTmpArr[0]).append('-').append(charTmpArr[1])
             Log.e("myTag", sb.toString())
             expenditureStatisticsViewModel.getAllByMonth(sb.toString())
                 .observe(this) { dailyList ->
                     Log.d("dailyList", dailyList.toString())
                     if (dailyList != null) {
                         // Adapter 데이터 갱신
-                        adapter.setDailyAccount(dailyList)
+                        expenditureStatisticsViewModel.setMonthVal(charTmpArr[1].toInt()-1)
+
+                        setExpendData(dailyList)
+                        // 날짜 순으로 정렬하여 adapter에 집어넣는다
+                        adapter.setDailyAccount(dailyList.sortedWith(compareByDescending(DailyAccount::date)))
                         adapter.notifyDataSetChanged()
                     }
                 }
@@ -125,7 +131,9 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
                 val dateSetListener =
                     DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                         dateString = "${year}년 ${month + 1}월 ${dayOfMonth}일"
-                        expenditureStatisticsViewModel.setDate("${year}-${month + 1}-$dayOfMonth")
+                        var tmp = dayOfMonth.toString()
+                        if(dayOfMonth < 10) tmp = "0$tmp"
+                        expenditureStatisticsViewModel.setDate("${year}-${month + 1}-$tmp")
                         expenditureStatisticsViewModel.setMonth("${year}-${month + 1}")
                         dailyCalendar = DailyCalendar(year, month, dayOfMonth)
                         showDetailDialog(dateString)
@@ -147,6 +155,12 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
             }
         }
 
+        expenditureStatisticsViewModel.totalPrice.observe(this) {
+            it?.let {
+                binding.tvTotalExpend.text = AppendCommaToPriceValue(it)
+            }
+        }
+
     }
 
     fun showDetailDialog(date: String) {
@@ -155,6 +169,15 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
             date, this@ExpenditureStatisticsActivity
         )
         dailyInsertCustomDialog.show(supportFragmentManager, "daily_insert_custom_dialog")
+    }
+
+    fun setExpendData(dailyList: List<DailyAccount>) {
+        var expendValue = 0
+        for(i in dailyList) {
+            expendValue += i.dailySpent
+        }
+
+        expenditureStatisticsViewModel.setTotalPrice(expendValue)
     }
 
     private fun setRecyclerView(recyclerView: RecyclerView){
@@ -169,6 +192,8 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
         expenditureStatisticsViewModel.setPrice(price)
         expenditureStatisticsViewModel.setCategory(hm[category].toString())
         expenditureStatisticsViewModel.setMemo(memo)
+        expenditureStatisticsViewModel.setMonthVal(charTmpArr[1].toInt()-1)
+
 
         expenditureStatisticsViewModel.saveDatabase()
     }
