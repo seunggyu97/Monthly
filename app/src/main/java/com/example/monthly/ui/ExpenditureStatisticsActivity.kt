@@ -2,15 +2,11 @@ package com.example.monthly.ui
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.provider.SyncStateContract.Helpers.insert
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.monthly.Constant
@@ -20,20 +16,13 @@ import com.example.monthly.R
 import com.example.monthly.adapter.ExpenditureListAdapter
 import com.example.monthly.data.dataclass.DailyAccount
 import com.example.monthly.data.dataclass.DailyCalendar
-import com.example.monthly.data.dataclass.User
 import com.example.monthly.databinding.ActivityExpenditureStatisticsBinding
 import com.example.monthly.enumClass.ServiceType
 import com.example.monthly.ui.dialogs.DailyInsertCustomDialog
 import com.example.monthly.ui.dialogs.DailyInsertDialogInterface
 import com.example.monthly.util.AppendCommaToPriceValue
 import com.example.monthly.viewModel.ExpenditureStatisticsViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.time.Year
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.math.exp
 
 
 class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialogInterface {
@@ -90,11 +79,17 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
                     Log.d("dailyList", dailyList.toString())
                     if (dailyList != null) {
                         // Adapter 데이터 갱신
-                        expenditureStatisticsViewModel.setMonthVal(charTmpArr[1].toInt()-1)
+                        expenditureStatisticsViewModel.setMonthVal(charTmpArr[1].toInt() - 1)
 
                         setExpendData(dailyList)
                         // 날짜 순으로 정렬하여 adapter에 집어넣는다
-                        adapter.setDailyAccount(dailyList.sortedWith(compareByDescending(DailyAccount::date)))
+                        adapter.setDailyAccount(
+                            dailyList.sortedWith(
+                                compareByDescending(
+                                    DailyAccount::date
+                                )
+                            )
+                        )
                         adapter.notifyDataSetChanged()
                     }
                 }
@@ -134,7 +129,7 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
                     DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                         dateString = "${year}년 ${month + 1}월 ${dayOfMonth}일"
                         var tmp = dayOfMonth.toString()
-                        if(dayOfMonth < 10) tmp = "0$tmp"
+                        if (dayOfMonth < 10) tmp = "0$tmp"
                         expenditureStatisticsViewModel.setDate("${year}-${month + 1}-$tmp")
                         expenditureStatisticsViewModel.setMonth("${year}-${month + 1}")
                         dailyCalendar = DailyCalendar(year, month, dayOfMonth)
@@ -160,28 +155,43 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
         expenditureStatisticsViewModel.totalPrice.observe(this) {
             it?.let {
                 val cal = Calendar.getInstance()
-
+                var average = 0
+                var recommend = 0
                 binding.tvTotalExpend.text = AppendCommaToPriceValue(it)
 
-                binding.tvDailyAverage.text = AppendCommaToPriceValue(it/cal.getActualMaximum(Calendar.DAY_OF_MONTH))
+                binding.tvDailyAverage.text =
+                    AppendCommaToPriceValue(it / cal.getActualMaximum(Calendar.DAY_OF_MONTH))
+                average = it / cal.getActualMaximum(Calendar.DAY_OF_MONTH)
+
                 binding.tvDailyRecommend.visibility = View.GONE
                 binding.tvTitleDailyRecommend.visibility = View.GONE
                 binding.tvStringDailyRecommendWon.visibility = View.GONE
+                binding.tvDailyAverage.setTextColor(getColor(R.color.font_black))
+                binding.tvDailyAverageWon.setTextColor(getColor(R.color.font_black))
+                binding.tvTitleDailyAverage.setTextColor(getColor(R.color.font_black))
                 binding.ivHelp.visibility = View.GONE
                 binding.ivHelpguide.visibility = View.GONE
                 binding.ivHelpguideBody.visibility = View.GONE
 
-                if(expenditureStatisticsViewModel._cal.get(Calendar.YEAR) == cal.get(Calendar.YEAR)) {
-                    if(expenditureStatisticsViewModel._cal.get(Calendar.MONTH) == cal.get(Calendar.MONTH)){
+                if (expenditureStatisticsViewModel._cal.get(Calendar.YEAR) == cal.get(Calendar.YEAR)) {
+                    if (expenditureStatisticsViewModel._cal.get(Calendar.MONTH) == cal.get(Calendar.MONTH)) {
                         // 현재달을 표시중일때
 
-                        GlobalApplication.prefs.setInt("currentMonthExpend", it) // SharedPref에 이번달지출금액 저장(MainActivity 표시용)
+                        GlobalApplication.prefs.setInt(
+                            "currentMonthExpend",
+                            it
+                        ) // SharedPref에 이번달지출금액 저장(MainActivity 표시용)
 
-                        binding.tvDailyAverage.text = AppendCommaToPriceValue(it/cal.get(Calendar.DAY_OF_MONTH))
-                        val remainDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH) - cal.get(Calendar.DAY_OF_MONTH)
+
+                        binding.tvDailyAverage.text =
+                            AppendCommaToPriceValue(it / cal.get(Calendar.DAY_OF_MONTH))
+                        val remainDay =
+                            cal.getActualMaximum(Calendar.DAY_OF_MONTH) - cal.get(Calendar.DAY_OF_MONTH)
+                        val limitValue = GlobalApplication.prefs.getInt("limitValue")
                         binding.tvDailyRecommend.text = AppendCommaToPriceValue(
-                            (expenditureStatisticsViewModel.user.value!!.limit - it)/remainDay
+                            (limitValue - it) / remainDay
                         )
+                        recommend = (limitValue - it) / remainDay
 
                         binding.tvDailyRecommend.visibility = View.VISIBLE
                         binding.tvTitleDailyRecommend.visibility = View.VISIBLE
@@ -189,18 +199,19 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
                         binding.ivHelp.visibility = View.VISIBLE
                         binding.ivHelpguide.visibility = View.INVISIBLE
                         binding.ivHelpguideBody.visibility = View.INVISIBLE
+
+                        if (recommend < average) {
+                            binding.tvDailyAverage.setTextColor(getColor(R.color.error))
+                            binding.tvTitleDailyAverage.setTextColor(getColor(R.color.error))
+                            binding.tvDailyAverageWon.setTextColor(getColor(R.color.error))
+                        } else {
+                            binding.tvDailyAverage.setTextColor(getColor(R.color.font_black))
+                            binding.tvTitleDailyAverage.setTextColor(getColor(R.color.font_black))
+                            binding.tvDailyAverageWon.setTextColor(getColor(R.color.font_black))
+                        }
                     }
                 }
 
-                if (binding.tvDailyRecommend.text.toString().toInt() < binding.tvDailyAverage.text.toString().toInt()){
-                    binding.tvDailyAverage.setTextColor(getColor(R.color.error))
-                    binding.tvTitleDailyAverage.setTextColor(getColor(R.color.error))
-                    binding.tvDailyAverageWon.setTextColor(getColor(R.color.error))
-                } else {
-                    binding.tvDailyAverage.setTextColor(getColor(R.color.font_black))
-                    binding.tvTitleDailyAverage.setTextColor(getColor(R.color.font_black))
-                    binding.tvDailyAverageWon.setTextColor(getColor(R.color.font_black))
-                }
             }
         }
 
@@ -216,29 +227,40 @@ class ExpenditureStatisticsActivity : PasswordInputActivity(), DailyInsertDialog
 
     fun setExpendData(dailyList: List<DailyAccount>) {
         var expendValue = 0
-        for(i in dailyList) {
+        for (i in dailyList) {
             expendValue += i.dailySpent
         }
 
         expenditureStatisticsViewModel.setTotalPrice(expendValue)
     }
 
-    private fun setRecyclerView(recyclerView: RecyclerView){
+    private fun setRecyclerView(recyclerView: RecyclerView) {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         adapter = ExpenditureListAdapter()
         recyclerView.adapter = adapter
     }
 
-    override fun onFinishButtonClicked(date: String, price: Int, category: ServiceType, memo: String) {
+    override fun onFinishButtonClicked(
+        date: String,
+        price: Int,
+        category: ServiceType,
+        memo: String
+    ) {
         Log.e("myTag", "$date $price ${hm[category]} $memo")
         expenditureStatisticsViewModel.setPrice(price)
         expenditureStatisticsViewModel.setCategory(hm[category].toString())
         expenditureStatisticsViewModel.setMemo(memo)
-        expenditureStatisticsViewModel.setMonthVal(charTmpArr[1].toInt()-1)
+        expenditureStatisticsViewModel.setMonthVal(charTmpArr[1].toInt() - 1)
 
 
         expenditureStatisticsViewModel.saveDatabase()
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (isFinishing) {
+            overridePendingTransition(R.anim.anim_none, R.anim.anim_slide_out_down)
+        }
+    }
 }

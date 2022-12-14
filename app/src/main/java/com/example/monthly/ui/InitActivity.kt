@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.monthly.GlobalApplication
 import com.example.monthly.R
 import com.example.monthly.databinding.ActivityInitBinding
 import com.example.monthly.ui.dialogs.InitCheckCustomDialog
@@ -74,6 +75,8 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
                     if (checkAllInput()){
                         initViewModel.setDay(binding.tvReferenceDate.text.toString())
                         initViewModel.setLimitValue(binding.etLimitValue.text.toString())
+                        GlobalApplication.prefs.setInt("limitValue", initViewModel.getLimitValue().toString().toInt())
+                        Log.e("MyTag1",GlobalApplication.prefs.getInt("limitValue").toString())
                         val initCheckCustomDialog = InitCheckCustomDialog (this@InitActivity,
                             initViewModel.getName().toString(),
                             initViewModel.getReferenceDate().toString(),

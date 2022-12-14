@@ -62,6 +62,7 @@ class MySharedPreference(context: Context) {
         return User(
             prefs.getString("userId", DEFAULT_STRING_VALUE)!!,
             prefs.getString("userName", DEFAULT_STRING_VALUE)!!,
+            prefs.getInt("limitValue", DEFAULT_INT_VALUE),
             prefs.getBoolean("pushSetting", DEFAULT_BOOLEAN_VALUE),
             prefs.getInt("pushTime", DEFAULT_INT_VALUE),
             prefs.getBoolean("securitySetting", DEFAULT_BOOLEAN_VALUE),

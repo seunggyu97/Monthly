@@ -12,6 +12,9 @@ data class User(
     @SerializedName("name")
     val name: String,
 
+    @SerializedName("limit_value")
+    val limit: Int,
+
     @SerializedName("push_setting")
     val pushSetting: Boolean,
 
