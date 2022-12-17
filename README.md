@@ -9,3 +9,17 @@ Monthly는 미래를 계획하는 가계부 안드로이드 애플리케이션�
 [개발진행현황3주차 바로가기](https://pitch.com/public/cf13687f-b43b-4f02-a97a-074acba319e7)
 
 [개발진행현황4주차 바로가기](https://pitch.com/public/64118cf4-e22f-4919-aaef-c4faa2e93fb8)
+
+[최종발표 바로가기](https://pitch.com/public/2d0c4eae-014c-4233-823c-dc8bd585b8d0)
+
+======1차 개발 완료(22.11.10 ~ 22.12.14)=======
+
+</br>
+======2차 개발 진행(22.12.21예정)======
+
+### 👉[앱 UI 설계 참고](https://www.figma.com/file/BvqcL6EgXbiC3nxJ9nv9LO/Untitled?node-id=0%3A1&t=a2kgUW6kKDibt17w-0)
+# 📝ToDO List
+#### 소비패턴 분석 기능 추가 예정
+#### 스탬프 기능 추가 예정
+#### 워너비 기능 추가 예정
+#### 스토어 출시
