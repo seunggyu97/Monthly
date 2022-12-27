@@ -61,8 +61,6 @@ class InitCheckCustomDialog(
                 dismiss()
             }
             btnFinish.setOnClickListener {
-                // canvasView클래스의 path를 가져오고 인터페이스를 통해 전달
-//                val mPath: Path = canvasView.getCanvasPath()
                 val bitmap = saveBitmap()
                 initDialogInterface?.onFinishButtonClicked(bitmap)
                 dismiss()

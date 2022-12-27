@@ -1,6 +1,7 @@
 package com.example.monthly.ui
 
 import BottomSheetDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
@@ -9,6 +10,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -25,6 +28,7 @@ import java.io.ByteArrayOutputStream
 class InitActivity : AppCompatActivity(), InitDialogInterface {
     private lateinit var binding: ActivityInitBinding
     private lateinit var initViewModel: InitViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,6 +66,8 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
                     binding.llReferenceDate.visibility = View.VISIBLE
                     binding.tvGuide.text = getString(R.string.init_guide2)
                     binding.tvTop.text = getString(R.string.init_top2)
+                    // transition 적용해보기(시도중)
+                    binding.etName.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.anim_slide_down))
                     showBottomSheet()
                     Log.e("MyTag", "이름 포커스")
                 }
