@@ -14,6 +14,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.monthly.GlobalApplication
@@ -67,7 +68,7 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
                     binding.tvGuide.text = getString(R.string.init_guide2)
                     binding.tvTop.text = getString(R.string.init_top2)
                     // transition 적용해보기(시도중)
-                    binding.etName.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.anim_slide_down))
+                    binding.llName.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.anim_slide_down2))
                     showBottomSheet()
                     Log.e("MyTag", "이름 포커스")
                 }
@@ -75,6 +76,8 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
                 else if (tvReferenceDate.isFocused) {
                     binding.llLimitValue.visibility = View.VISIBLE
                     binding.etLimitValue.requestFocus()
+                    binding.llName.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.anim_slide_down2))
+                    binding.llReferenceDate.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.anim_slide_down2))
                     Log.e("MyTag", "기준일 포커스")
 
                 } else if (etLimitValue.isFocused) {
@@ -119,6 +122,20 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
     }
 
     fun showLimitValue() {
+        if(!binding.llLimitValue.isVisible) {
+            binding.llName.startAnimation(
+                AnimationUtils.loadAnimation(
+                    applicationContext,
+                    R.anim.anim_slide_down2
+                )
+            )
+            binding.llReferenceDate.startAnimation(
+                AnimationUtils.loadAnimation(
+                    applicationContext,
+                    R.anim.anim_slide_down2
+                )
+            )
+        }
         binding.llLimitValue.visibility = View.VISIBLE
         binding.etLimitValue.requestFocus()
         Log.e("MyTag", "기준일 포커스")
