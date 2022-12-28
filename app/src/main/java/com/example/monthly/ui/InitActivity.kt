@@ -64,20 +64,20 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
                 tvLimitValueError.visibility = View.GONE
                 if (etName.isFocused) {
                     // 이름에 포커스 되어있는 상태라면 기준일 레이아웃을 보이게 한다.
-                    binding.llReferenceDate.visibility = View.VISIBLE
+//                    binding.llReferenceDate.visibility = View.VISIBLE
                     binding.tvGuide.text = getString(R.string.init_guide2)
                     binding.tvTop.text = getString(R.string.init_top2)
-                    // transition 적용해보기(시도중)
-                    binding.llName.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.anim_slide_down2))
+
+                    binding.motionName.transitionToEnd()
                     showBottomSheet()
                     Log.e("MyTag", "이름 포커스")
                 }
                 // 기준일 입력칸에 포커스 되어있는 상태라면 한도금액 레이아웃을 보이게 한 후 한도 입력칸에 포커스 이동
                 else if (tvReferenceDate.isFocused) {
-                    binding.llLimitValue.visibility = View.VISIBLE
+//                    binding.llLimitValue.visibility = View.VISIBLE
                     binding.etLimitValue.requestFocus()
-                    binding.llName.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.anim_slide_down2))
-                    binding.llReferenceDate.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.anim_slide_down2))
+
+                    binding.motionReferencedate.transitionToEnd()
                     Log.e("MyTag", "기준일 포커스")
 
                 } else if (etLimitValue.isFocused) {
@@ -122,21 +122,7 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
     }
 
     fun showLimitValue() {
-        if(!binding.llLimitValue.isVisible) {
-            binding.llName.startAnimation(
-                AnimationUtils.loadAnimation(
-                    applicationContext,
-                    R.anim.anim_slide_down2
-                )
-            )
-            binding.llReferenceDate.startAnimation(
-                AnimationUtils.loadAnimation(
-                    applicationContext,
-                    R.anim.anim_slide_down2
-                )
-            )
-        }
-        binding.llLimitValue.visibility = View.VISIBLE
+//        binding.llLimitValue.visibility = View.VISIBLE
         binding.etLimitValue.requestFocus()
         Log.e("MyTag", "기준일 포커스")
         binding.tvGuide.text = getString(R.string.init_guide3)
@@ -187,6 +173,7 @@ class InitActivity : AppCompatActivity(), InitDialogInterface {
     override fun onCompleteButtonClicked(content: String) {
         initViewModel.setDay(content)
 
+        binding.motionReferencedate.transitionToEnd()
         // 키보드 올리기
         val imm: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         binding.etLimitValue.postDelayed(Runnable {
