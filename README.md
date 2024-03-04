@@ -15,7 +15,6 @@ Monthly는 미래를 계획하는 가계부 안드로이드 애플리케이션�
 ======1차 개발 완료(22.11.10 ~ 22.12.14)=======
 
 </br>
-======2차 개발 진행(미정)======
 
 ### 👉[앱 UI 설계 참고](https://www.figma.com/file/BvqcL6EgXbiC3nxJ9nv9LO/Untitled?node-id=0%3A1&t=a2kgUW6kKDibt17w-0)
 # 📝ToDO List
